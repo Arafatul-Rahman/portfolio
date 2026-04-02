@@ -1,189 +1,473 @@
 <html lang="en" class="scroll-smooth"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JD | Scalable Systems Architecture</title>
+    <title>Shah Md. Arafatul Rahman | Laravel Developer · Dhaka, Bangladesh</title>
+    <meta name="description" content="Shah Md. Arafatul Rahman — Laravel Developer with 5 years of experience building scalable web applications. Available for remote, freelance, and part-time projects.">
+    <meta property="og:title" content="Shah Md. Arafatul Rahman | Laravel Developer">
+    <meta property="og:description" content="Passionate Laravel Developer from Dhaka, Bangladesh. 5 years of experience in scalable web applications, backend APIs, and DevOps deployments.">
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #121212;
-            color: #d4d4d8; /* zinc-300 */
+            background-color: #0a0a0a;
+            color: #d4d4d8;
         }
         .font-mono {
             font-family: 'JetBrains Mono', monospace;
         }
-        /* Subtle grid background for structural feel */
+        /* Grid background */
         .bg-grid {
             background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-image: linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
         }
+
+        /* ---- Scroll reveal ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ---- Mobile nav ---- */
+        #mobile-nav {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+        #mobile-nav.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        /* ---- Glow card hover ---- */
+        .glow-card {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glow-card:hover {
+            box-shadow: 0 0 0 1px rgba(59,130,246,0.3), 0 8px 32px rgba(59,130,246,0.08);
+        }
+        .glow-card-emerald:hover {
+            box-shadow: 0 0 0 1px rgba(16,185,129,0.3), 0 8px 32px rgba(16,185,129,0.08);
+        }
+        .glow-card-purple:hover {
+            box-shadow: 0 0 0 1px rgba(139,92,246,0.3), 0 8px 32px rgba(139,92,246,0.08);
+        }
+
+        /* ---- Section label ---- */
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #60a5fa;
+            margin-bottom: 12px;
+        }
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 1px;
+            background: #60a5fa;
+        }
+
+        /* ---- Project card preview area ---- */
+        .project-preview {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #27272a;
+        }
+        .project-number {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            opacity: 0.06;
+            color: #fff;
+            user-select: none;
+        }
+
+        /* ---- Stats bar ---- */
+        .stat-divider {
+            width: 1px;
+            height: 32px;
+            background: #27272a;
+        }
+
+        /* ---- Gradient text ---- */
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ---- Timeline dot pulse ---- */
+        .dot-active::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1px solid rgba(96,165,250,0.4);
+            animation: ring-pulse 2s ease-out infinite;
+        }
+        @keyframes ring-pulse {
+            0%   { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.8); }
+        }
+
+        /* ---- Focus styles ---- */
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 3px;
+        }
+
+        /* ---- Hamburger bars ---- */
+        .ham-bar {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #d4d4d8;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        #ham-btn.open .ham-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        #ham-btn.open .ham-bar:nth-child(2) { opacity: 0; }
+        #ham-btn.open .ham-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
     </style>
 </head>
 <body class="antialiased selection:bg-blue-500/30 selection:text-blue-200 flex flex-col min-h-screen">
 
     <!-- Navigation -->
-    <header class="fixed top-0 inset-x-0 z-50 border-b border-zinc-800/50 bg-[#121212]/80 backdrop-blur-md">
+    <header class="fixed top-0 inset-x-0 z-50 border-b border-zinc-800/50 bg-[#0a0a0a]/85 backdrop-blur-md">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="text-lg font-semibold tracking-tighter text-white hover:text-blue-400 transition-colors">
-                JD.
+            <a href="#" class="text-lg font-bold tracking-tighter text-white hover:text-blue-400 transition-colors">
+                Arafatul.
             </a>
+            <!-- Desktop nav -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+                <a href="#about" class="hover:text-white transition-colors">About</a>
                 <a href="#stack" class="hover:text-white transition-colors">Stack</a>
                 <a href="#projects" class="hover:text-white transition-colors">Projects</a>
-                <a href="#experience" class="hover:text-white transition-colors">Experience</a>
-                <a href="#github" class="hover:text-white transition-colors">Open Source</a>
+                <a href="#blog" class="hover:text-white transition-colors">Blog</a>
             </nav>
             <a href="#contact" class="hidden md:inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-zinc-800 hover:bg-zinc-700 rounded-lg border border-zinc-700 transition-colors">
                 Let's Talk
             </a>
+            <!-- Mobile hamburger -->
+            <button id="ham-btn" class="md:hidden flex flex-col gap-[5px] p-2 rounded-lg hover:bg-zinc-800 transition-colors" aria-label="Toggle navigation">
+                <span class="ham-bar"></span>
+                <span class="ham-bar"></span>
+                <span class="ham-bar"></span>
+            </button>
+        </div>
+        <!-- Mobile nav panel -->
+        <div id="mobile-nav">
+            <nav class="flex flex-col gap-1 px-6 pb-4 text-sm font-medium text-zinc-300 border-t border-zinc-800/50">
+                <a href="#about"    class="nav-link py-3 hover:text-white transition-colors border-b border-zinc-800/30">About</a>
+                <a href="#stack"    class="nav-link py-3 hover:text-white transition-colors border-b border-zinc-800/30">Stack</a>
+                <a href="#projects" class="nav-link py-3 hover:text-white transition-colors border-b border-zinc-800/30">Projects</a>
+                <a href="#blog"     class="nav-link py-3 hover:text-white transition-colors border-b border-zinc-800/30">Blog</a>
+                <a href="#contact"  class="nav-link mt-2 py-2.5 text-center text-white bg-zinc-800 hover:bg-zinc-700 rounded-lg border border-zinc-700 transition-colors">Let's Talk</a>
+            </nav>
         </div>
     </header>
 
     <main class="flex-grow pt-16">
-        <!-- Hero Section -->
-        <section class="relative max-w-6xl mx-auto px-6 py-24 md:py-32 lg:py-40 flex flex-col lg:flex-row items-center gap-16">
-            <div class="absolute inset-0 bg-grid -z-10 [mask-image:radial-gradient(ellipse_at_center,white,transparent_80%)]"></div>
-            
+
+        <!-- ─── Hero ─── -->
+        <section class="relative max-w-6xl mx-auto px-6 py-28 md:py-36 lg:py-44 flex flex-col lg:flex-row items-center gap-16">
+            <div class="absolute inset-0 bg-grid -z-10 [mask-image:radial-gradient(ellipse_at_center,white,transparent_75%)]"></div>
+            <!-- Background glow blobs -->
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/8 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-emerald-600/8 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+
             <div class="flex-1 space-y-8 text-center lg:text-left relative z-10">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-medium">
+                <!-- Status badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/8 text-blue-400 text-xs font-medium reveal visible">
                     <span class="relative flex h-2 w-2">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                     </span>
-                    Available for new opportunities
+                    Open to remote &amp; freelance work
                 </div>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-tight">
-                    I build <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Scalable Web Applications</span> &amp; Optimized Backend Systems.
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] reveal visible">
+                    Hi, I'm <span class="gradient-text">Arafatul</span> — I build scalable Laravel backends &amp; web applications.
                 </h1>
-                <p class="text-lg text-zinc-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                    Full-Stack Software Engineer specializing in the Laravel ecosystem, modern JavaScript frameworks (Vue.js/React), and containerized DevOps deployments (Docker).
+
+                <p class="text-lg text-zinc-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed reveal visible">
+                    Laravel Developer from <span class="text-zinc-300">Dhaka, Bangladesh</span> with ~5 years of experience. I specialize in backend APIs, database optimization, and full-stack web development.
                 </p>
-                <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-                    <a href="#projects" class="w-full sm:w-auto px-6 py-3 text-sm font-medium text-black bg-white rounded-lg hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2">
+
+                <!-- Stats bar -->
+                <div class="flex items-center gap-6 justify-center lg:justify-start reveal visible">
+                    <div class="text-center lg:text-left">
+                        <div class="text-2xl font-bold text-white">5+</div>
+                        <div class="text-xs text-zinc-500 mt-0.5">Years Exp.</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="text-center lg:text-left">
+                        <div class="text-2xl font-bold text-white">30+</div>
+                        <div class="text-xs text-zinc-500 mt-0.5">Projects</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="text-center lg:text-left">
+                        <div class="text-2xl font-bold text-white">Remote</div>
+                        <div class="text-xs text-zinc-500 mt-0.5">Available</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start reveal visible">
+                    <a href="#projects" class="w-full sm:w-auto px-6 py-3 text-sm font-semibold text-black bg-white rounded-lg hover:bg-zinc-100 transition-colors flex items-center justify-center gap-2">
                         View Projects
                         <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
                     </a>
-                    <a href="#github" class="w-full sm:w-auto px-6 py-3 text-sm font-medium text-white bg-transparent border border-zinc-800 rounded-lg hover:bg-zinc-900 transition-colors flex items-center justify-center gap-2">
+                    <a href="#github" class="w-full sm:w-auto px-6 py-3 text-sm font-medium text-zinc-300 bg-transparent border border-zinc-700 rounded-lg hover:bg-zinc-900 hover:border-zinc-500 transition-all flex items-center justify-center gap-2">
                         <iconify-icon icon="solar:code-circle-linear" class="text-base"></iconify-icon>
                         GitHub Profile
                     </a>
                 </div>
             </div>
 
-            <div class="flex-1 w-full lg:w-auto relative group perspective-1000">
-                <!-- Abstract Glow -->
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-blue-500/20 rounded-full blur-[80px] -z-10 group-hover:bg-blue-500/30 transition-all duration-700"></div>
-                
-                <!-- Terminal Mockup -->
-                <div class="rounded-xl border border-zinc-800 bg-zinc-950/80 backdrop-blur-sm overflow-hidden shadow-2xl transform rotate-y-[-5deg] rotate-x-[5deg] transition-transform duration-500 group-hover:rotate-0">
-                    <div class="flex items-center px-4 py-3 border-b border-zinc-800/50 bg-zinc-900/50">
-                       <div class="flex gap-1.5">
-                         <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
-                         <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
-                         <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
-                       </div>
-                       <div class="ml-4 text-xs font-medium text-zinc-500 font-mono">deploy.sh — node</div>
+            <!-- Terminal mockup -->
+            <div class="flex-1 w-full lg:w-auto relative group">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-blue-500/15 rounded-full blur-[80px] -z-10 group-hover:bg-blue-500/25 transition-all duration-700"></div>
+                <div class="rounded-xl border border-zinc-700/60 bg-zinc-950/90 backdrop-blur-sm overflow-hidden shadow-2xl transition-transform duration-500 hover:scale-[1.01]">
+                    <!-- Window bar with colored dots -->
+                    <div class="flex items-center px-4 py-3 border-b border-zinc-800 bg-zinc-900/70">
+                        <div class="flex gap-1.5">
+                            <div class="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-500 transition-colors cursor-default"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 transition-colors cursor-default"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 transition-colors cursor-default"></div>
+                        </div>
+                        <div class="ml-4 text-xs font-medium text-zinc-500 font-mono">deploy.sh — bash</div>
                     </div>
-                    <div class="p-5 font-mono text-sm text-zinc-400 leading-relaxed overflow-x-auto">
-                      <span class="text-blue-400">jd@macbook</span>:<span class="text-emerald-400">~/infrastructure</span>$ docker-compose up -d<br>
-                      <span class="text-zinc-500">Creating network "app_network" with driver "bridge"</span><br>
-                      <span class="text-zinc-500">Creating app_redis_1  ... done</span><br>
-                      <span class="text-zinc-500">Creating app_mysql_1  ... done</span><br>
-                      <span class="text-zinc-500">Creating app_laravel_1 ... done</span><br><br>
-                      <span class="text-blue-400">jd@macbook</span>:<span class="text-emerald-400">~/infrastructure</span>$ php artisan optimize<br>
-                      Configuration cache cleared successfully.<br>
-                      Route cache cleared successfully.<br>
-                      <span class="text-emerald-400">Application optimized successfully.</span><br>
-                      <span class="animate-pulse">_</span>
+                    <div class="p-5 font-mono text-sm text-zinc-400 leading-loose overflow-x-auto">
+                        <div><span class="text-blue-400">arafatul@server</span>:<span class="text-emerald-400">~/app</span><span class="text-zinc-500">$</span> docker-compose up -d</div>
+                        <div class="text-zinc-600 pl-2">Creating network "app_network" ... done</div>
+                        <div class="text-zinc-600 pl-2">Creating app_redis_1  ............. <span class="text-emerald-500">done</span></div>
+                        <div class="text-zinc-600 pl-2">Creating app_mysql_1  ............. <span class="text-emerald-500">done</span></div>
+                        <div class="text-zinc-600 pl-2">Creating app_laravel_1 ............ <span class="text-emerald-500">done</span></div>
+                        <div class="mt-2"><span class="text-blue-400">jd@server</span>:<span class="text-emerald-400">~/app</span><span class="text-zinc-500">$</span> php artisan optimize</div>
+                        <div class="text-zinc-400 pl-2">Configuration cached successfully.</div>
+                        <div class="text-zinc-400 pl-2">Routes cached successfully.</div>
+                        <div class="text-emerald-400 pl-2">Application optimized. <span class="animate-pulse text-zinc-400">█</span></div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- ─── Experience & Open Source ─── -->
+        <section id="experience" class="py-24 border-t border-zinc-800/50 bg-zinc-900/5">
+            <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
 
-        <!-- Tech Stack Section -->
-        <section id="stack" class="py-24 border-t border-zinc-800/50 bg-zinc-900/10">
+                <!-- Timeline -->
+                <div>
+                    <div class="section-label reveal">Career</div>
+                    <h2 class="text-2xl font-bold tracking-tight text-white mb-10 reveal">Career Trajectory</h2>
+                    <div class="relative border-l border-zinc-800 ml-3 space-y-12">
+
+                        <div class="relative pl-8 reveal reveal-delay-1">
+                            <div class="absolute w-3 h-3 bg-blue-500 rounded-full -left-[6.5px] top-1.5 ring-4 ring-[#0a0a0a] dot-active"></div>
+                            <div class="text-xs font-semibold text-blue-400 mb-1 tracking-wide">2022 — Present</div>
+                            <h3 class="text-base font-semibold text-white">Laravel Developer (Freelance/Remote)</h3>
+                            <div class="text-sm text-zinc-500 mb-3">Independent · Remote</div>
+                            <p class="text-sm text-zinc-400 leading-relaxed">Building scalable web applications for international clients. Specialize in REST APIs, e-commerce platforms, and admin dashboards using Laravel, Vue.js, and MySQL.</p>
+                        </div>
+
+                        <div class="relative pl-8 reveal reveal-delay-2">
+                            <div class="absolute w-3 h-3 bg-zinc-700 rounded-full -left-[6.5px] top-1.5 ring-4 ring-[#0a0a0a]"></div>
+                            <div class="text-xs font-semibold text-zinc-500 mb-1 tracking-wide">2020 — 2022</div>
+                            <h3 class="text-base font-semibold text-white">Full Stack Developer</h3>
+                            <div class="text-sm text-zinc-500 mb-3">Local Software Company · Dhaka</div>
+                            <p class="text-sm text-zinc-400 leading-relaxed">Developed end-to-end features using Laravel and Vue.js. Built RESTful APIs, integrated third-party services, and optimized MySQL databases for high-traffic applications.</p>
+                        </div>
+
+                        <div class="relative pl-8 reveal reveal-delay-3">
+                            <div class="absolute w-3 h-3 bg-zinc-700 rounded-full -left-[6.5px] top-1.5 ring-4 ring-[#0a0a0a]"></div>
+                            <div class="text-xs font-semibold text-zinc-500 mb-1 tracking-wide">2019 — 2020</div>
+                            <h3 class="text-base font-semibold text-white">Junior Web Developer</h3>
+                            <div class="text-sm text-zinc-500 mb-3">Web Agency · Dhaka</div>
+                            <p class="text-sm text-zinc-400 leading-relaxed">Started career building websites with PHP and early Laravel. Developed responsive frontend interfaces and learned core web development fundamentals.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Open Source -->
+                <div id="github">
+                    <div class="section-label reveal">Open Source</div>
+                    <h2 class="text-2xl font-bold tracking-tight text-white mb-10 flex items-center gap-3 reveal">
+                        <iconify-icon icon="solar:github-linear" class="text-2xl text-zinc-400"></iconify-icon>
+                        Open Source Activity
+                    </h2>
+
+                    <div class="space-y-4">
+                        <a href="#" class="block p-5 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-700 hover:bg-zinc-900/70 transition-all group reveal reveal-delay-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-sm font-semibold text-blue-400 flex items-center gap-2 group-hover:text-blue-300 transition-colors">
+                                    <iconify-icon icon="solar:folder-with-files-linear"></iconify-icon>
+                                    laravel-advanced-filters
+                                </h4>
+                                <span class="text-xs text-zinc-500 border border-zinc-800 rounded-full px-2 py-0.5">Public</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 mb-4 leading-relaxed">A robust package for dynamically filtering Eloquent models based on complex query string parameters.</p>
+                            <div class="flex items-center gap-4 text-xs font-medium text-zinc-500">
+                                <div class="flex items-center gap-1.5">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-[#4F5D95]"></div> PHP
+                                </div>
+                                <div class="flex items-center gap-1.5 text-yellow-500/80"><iconify-icon icon="solar:star-bold"></iconify-icon> 245</div>
+                                <div class="flex items-center gap-1.5"><iconify-icon icon="solar:branching-paths-linear"></iconify-icon> 32</div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="block p-5 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-700 hover:bg-zinc-900/70 transition-all group reveal reveal-delay-2">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-sm font-semibold text-blue-400 flex items-center gap-2 group-hover:text-blue-300 transition-colors">
+                                    <iconify-icon icon="solar:folder-with-files-linear"></iconify-icon>
+                                    docker-php-dev-env
+                                </h4>
+                                <span class="text-xs text-zinc-500 border border-zinc-800 rounded-full px-2 py-0.5">Public</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 mb-4 leading-relaxed">Zero-config Docker Compose setup for modern PHP 8 and Node.js development workflows. Battle-tested in production.</p>
+                            <div class="flex items-center gap-4 text-xs font-medium text-zinc-500">
+                                <div class="flex items-center gap-1.5">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-[#384d54]"></div> Dockerfile
+                                </div>
+                                <div class="flex items-center gap-1.5 text-yellow-500/80"><iconify-icon icon="solar:star-bold"></iconify-icon> 189</div>
+                                <div class="flex items-center gap-1.5"><iconify-icon icon="solar:branching-paths-linear"></iconify-icon> 15</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ─── Career Objective / About ─── -->
+
+        <!-- ─── Tech Stack ─── -->
+        <section id="stack" class="py-24 border-t border-zinc-800/50 bg-zinc-900/5">
             <div class="max-w-6xl mx-auto px-6">
-                <div class="mb-16 text-center lg:text-left">
-                    <h2 class="text-2xl md:text-3xl font-semibold tracking-tight text-white mb-4">Engineering Arsenal</h2>
-                    <p class="text-zinc-400">Tools and technologies I use to build robust architectures.</p>
+                <div class="mb-16 text-center lg:text-left reveal">
+                    <div class="section-label">Engineering Stack</div>
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white mb-3">Engineering Arsenal</h2>
+                    <p class="text-zinc-400">Tools and technologies I use to build robust, production-grade architectures.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Frontend -->
-                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-700 transition-colors group">
-                        <div class="w-12 h-12 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 group-hover:border-blue-500/50 transition-colors text-blue-400">
-                            <iconify-icon icon="solar:monitor-smartphone-linear" width="24" style="stroke-width: 1.5;"></iconify-icon>
+                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/60 glow-card group reveal reveal-delay-1">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6 group-hover:bg-blue-500/15 transition-colors text-blue-400">
+                            <iconify-icon icon="solar:monitor-smartphone-linear" width="24"></iconify-icon>
                         </div>
-                        <h3 class="text-lg font-medium text-white mb-4">Frontend</h3>
+                        <h3 class="text-base font-semibold text-white mb-1">Frontend</h3>
+                        <p class="text-xs text-zinc-500 mb-5">UI & Interactive Interfaces</p>
                         <ul class="space-y-3 text-sm text-zinc-400">
-                            <li class="flex items-center gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-600"></iconify-icon> Vue.js / Nuxt 3</li>
-                            <li class="flex items-center gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-600"></iconify-icon> React / Next.js</li>
-                            <li class="flex items-center gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-600"></iconify-icon> Tailwind CSS</li>
-                            <li class="flex items-center gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-600"></iconify-icon> TypeScript</li>
+                            <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-blue-400 text-base flex-shrink-0"></iconify-icon> Vue.js / Nuxt 3</li>
+                            <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-blue-400 text-base flex-shrink-0"></iconify-icon> React / Next.js</li>
+                            <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-blue-400 text-base flex-shrink-0"></iconify-icon> Tailwind CSS</li>
+                            <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-blue-400 text-base flex-shrink-0"></iconify-icon> TypeScript</li>
                         </ul>
                     </div>
-                    
+
                     <!-- Backend -->
-                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-700 transition-colors group">
-                        <div class="w-12 h-12 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 group-hover:border-emerald-500/50 transition-colors text-emerald-400">
-                            <iconify-icon icon="solar:database-linear" width="24" style="stroke-width: 1.5;"></iconify-icon>
+                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/60 glow-card-emerald glow-card group reveal reveal-delay-2">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 group-hover:bg-emerald-500/15 transition-colors text-emerald-400">
+                            <iconify-icon icon="solar:database-linear" width="24"></iconify-icon>
                         </div>
-                        <h3 class="text-lg font-medium text-white mb-4">Backend &amp; DB</h3>
+                        <h3 class="text-base font-semibold text-white mb-1">Backend &amp; DB</h3>
+                        <p class="text-xs text-zinc-500 mb-5">APIs, Databases & Server Logic</p>
                         <ul class="space-y-3 text-sm text-zinc-400">
-                            <li class="flex items-center gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-600"></iconify-icon> Laravel / PHP 8.x</li>
-                            <li class="flex items-center gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-600"></iconify-icon> MySQL / PostgreSQL</li>
-                            <li class="flex items-center gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-600"></iconify-icon> Redis / Memcached</li>
-                            <li class="flex items-center gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-600"></iconify-icon> RESTful APIs / GraphQL</li>
+                            <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-400 text-base flex-shrink-0"></iconify-icon> Laravel / PHP 8.x</li>
+                            <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-400 text-base flex-shrink-0"></iconify-icon> MySQL / PostgreSQL</li>
+                            <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-400 text-base flex-shrink-0"></iconify-icon> Redis / Memcached</li>
+                            <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-400 text-base flex-shrink-0"></iconify-icon> RESTful APIs / GraphQL</li>
                         </ul>
                     </div>
 
                     <!-- DevOps -->
-                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-700 transition-colors group">
-                        <div class="w-12 h-12 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 group-hover:border-purple-500/50 transition-colors text-purple-400">
-                            <iconify-icon icon="solar:cloud-check-linear" width="24" style="stroke-width: 1.5;"></iconify-icon>
+                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/60 glow-card-purple glow-card group reveal reveal-delay-3">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-6 group-hover:bg-purple-500/15 transition-colors text-purple-400">
+                            <iconify-icon icon="solar:cloud-check-linear" width="24"></iconify-icon>
                         </div>
-                        <h3 class="text-lg font-medium text-white mb-4">DevOps &amp; Tooling</h3>
+                        <h3 class="text-base font-semibold text-white mb-1">DevOps &amp; Cloud</h3>
+                        <p class="text-xs text-zinc-500 mb-5">Deployment, CI/CD & Infrastructure</p>
                         <ul class="space-y-3 text-sm text-zinc-400">
-                            <li class="flex items-center gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-600"></iconify-icon> Docker &amp; Compose</li>
-                            <li class="flex items-center gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-600"></iconify-icon> CI/CD (GitHub Actions)</li>
-                            <li class="flex items-center gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-600"></iconify-icon> AWS (EC2, S3, RDS)</li>
-                            <li class="flex items-center gap-3"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-600"></iconify-icon> Linux Administration</li>
+                            <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-purple-400 text-base flex-shrink-0"></iconify-icon> Docker &amp; Compose</li>
+                            <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-purple-400 text-base flex-shrink-0"></iconify-icon> CI/CD (GitHub Actions)</li>
+                            <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-purple-400 text-base flex-shrink-0"></iconify-icon> AWS (EC2, S3, RDS)</li>
+                            <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-purple-400 text-base flex-shrink-0"></iconify-icon> Linux Administration</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Featured Projects -->
+        <!-- ─── Projects ─── -->
         <section id="projects" class="py-24 border-t border-zinc-800/50">
             <div class="max-w-6xl mx-auto px-6">
-                <div class="mb-16">
-                    <h2 class="text-2xl md:text-3xl font-semibold tracking-tight text-white mb-4">Featured Work</h2>
-                    <p class="text-zinc-400 max-w-2xl">Architectural solutions solving complex business problems at scale.</p>
+                <div class="mb-16 reveal">
+                    <div class="section-label">Case Studies</div>
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white mb-3">Featured Work</h2>
+                    <p class="text-zinc-400 max-w-2xl">Architectural solutions designed to solve complex business problems at scale.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Project 1 -->
-                    <div class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/30 overflow-hidden hover:bg-zinc-900/60 hover:border-zinc-700 transition-all">
-                        <div class="aspect-video bg-zinc-950 flex items-center justify-center relative border-b border-zinc-800 overflow-hidden">
-                            <!-- Abstract Project Graphic -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-transparent"></div>
-                            <iconify-icon icon="solar:chart-square-linear" class="text-6xl text-zinc-800 group-hover:text-blue-500/50 transition-colors duration-500"></iconify-icon>
+
+                    <!-- Project 1 — Analytics Platform -->
+                    <div class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/20 overflow-hidden hover:border-blue-500/30 glow-card transition-all reveal reveal-delay-1">
+                        <div class="project-preview bg-zinc-950">
+                            <!-- Real image (shown if file exists) -->
+                            <img src="images/projects/project-1.jpg" alt="Enterprise Analytics Platform screenshot"
+                                 class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500"
+                                 onerror="this.style.display='none'">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-blue-950/10 to-transparent"></div>
+                            <!-- Fallback graphic (hidden when image loads) -->
+                            <div class="relative z-10 flex flex-col items-center gap-3 opacity-60 group-hover:opacity-90 transition-opacity duration-500">
+                                <div class="flex items-end gap-1.5">
+                                    <div class="w-3 bg-blue-400 rounded-t" style="height:28px"></div>
+                                    <div class="w-3 bg-blue-400/70 rounded-t" style="height:44px"></div>
+                                    <div class="w-3 bg-blue-400 rounded-t" style="height:36px"></div>
+                                    <div class="w-3 bg-blue-400/70 rounded-t" style="height:56px"></div>
+                                    <div class="w-3 bg-blue-400 rounded-t" style="height:32px"></div>
+                                    <div class="w-3 bg-blue-400/70 rounded-t" style="height:64px"></div>
+                                    <div class="w-3 bg-blue-400 rounded-t" style="height:48px"></div>
+                                </div>
+                                <iconify-icon icon="solar:chart-square-linear" class="text-2xl text-blue-400/50"></iconify-icon>
+                            </div>
+                            <div class="project-number">01</div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 text-xs font-medium bg-zinc-800 text-zinc-300 rounded">Laravel</span>
-                                <span class="px-2 py-1 text-xs font-medium bg-zinc-800 text-zinc-300 rounded">Vue.js</span>
-                                <span class="px-2 py-1 text-xs font-medium bg-zinc-800 text-zinc-300 rounded">Redis</span>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="px-2 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-300 rounded border border-blue-500/20">Laravel</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-300 rounded border border-blue-500/20">Vue.js</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-300 rounded border border-blue-500/20">Redis</span>
                             </div>
-                            <h3 class="text-xl font-semibold text-white mb-2">Enterprise Analytics Platform</h3>
-                            <div class="mb-6 space-y-2 flex-grow">
-                                <p class="text-sm font-medium text-zinc-300">The Challenge:</p>
+                            <h3 class="text-xl font-semibold text-white mb-3">Enterprise Analytics Platform</h3>
+                            <div class="mb-6 flex-grow">
+                                <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">The Challenge</p>
                                 <p class="text-sm text-zinc-400 leading-relaxed">Processing millions of daily events in real-time for an e-commerce giant. Implemented a Redis-backed queuing system in Laravel, reducing report generation time by 85%.</p>
                             </div>
                             <div class="flex items-center gap-4 pt-4 border-t border-zinc-800">
@@ -197,25 +481,52 @@
                         </div>
                     </div>
 
-                    <!-- Project 2 -->
-                    <div class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/30 overflow-hidden hover:bg-zinc-900/60 hover:border-zinc-700 transition-all">
-                        <div class="aspect-video bg-zinc-950 flex items-center justify-center relative border-b border-zinc-800 overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/20 to-transparent"></div>
-                            <iconify-icon icon="solar:server-square-linear" class="text-6xl text-zinc-800 group-hover:text-emerald-500/50 transition-colors duration-500"></iconify-icon>
+                    <!-- Project 2 — Deployment Pipeline -->
+                    <div class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/20 overflow-hidden hover:border-emerald-500/30 glow-card-emerald glow-card transition-all reveal reveal-delay-2">
+                        <div class="project-preview bg-zinc-950">
+                            <img src="images/projects/project-2.jpg" alt="Deployment Pipeline screenshot"
+                                 class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500"
+                                 onerror="this.style.display='none'">
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/30 via-emerald-950/10 to-transparent"></div>
+                            <!-- Abstract server/pipeline graphic -->
+                            <div class="relative z-10 flex flex-col items-center gap-2 opacity-60 group-hover:opacity-90 transition-opacity duration-500">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded border border-emerald-500/40 bg-emerald-500/10 flex items-center justify-center">
+                                        <iconify-icon icon="solar:box-linear" class="text-emerald-400 text-lg"></iconify-icon>
+                                    </div>
+                                    <div class="flex gap-1">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400/60"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400/40"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400/60"></div>
+                                    </div>
+                                    <div class="w-8 h-8 rounded border border-emerald-500/40 bg-emerald-500/10 flex items-center justify-center">
+                                        <iconify-icon icon="solar:server-square-linear" class="text-emerald-400 text-lg"></iconify-icon>
+                                    </div>
+                                    <div class="flex gap-1">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400/60"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400/40"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400/60"></div>
+                                    </div>
+                                    <div class="w-8 h-8 rounded border border-emerald-500/40 bg-emerald-500/10 flex items-center justify-center">
+                                        <iconify-icon icon="solar:cloud-upload-linear" class="text-emerald-400 text-lg"></iconify-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-number">02</div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 text-xs font-medium bg-zinc-800 text-zinc-300 rounded">Microservices</span>
-                                <span class="px-2 py-1 text-xs font-medium bg-zinc-800 text-zinc-300 rounded">Docker</span>
-                                <span class="px-2 py-1 text-xs font-medium bg-zinc-800 text-zinc-300 rounded">AWS</span>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Microservices</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Docker</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">AWS</span>
                             </div>
-                            <h3 class="text-xl font-semibold text-white mb-2">Automated Deployment Pipeline</h3>
-                            <div class="mb-6 space-y-2 flex-grow">
-                                <p class="text-sm font-medium text-zinc-300">The Challenge:</p>
+                            <h3 class="text-xl font-semibold text-white mb-3">Automated Deployment Pipeline</h3>
+                            <div class="mb-6 flex-grow">
+                                <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">The Challenge</p>
                                 <p class="text-sm text-zinc-400 leading-relaxed">Migrating a monolithic PHP application to Dockerized microservices. Built zero-downtime CI/CD pipelines via GitHub Actions, improving release cadence from weekly to multiple times a day.</p>
                             </div>
                             <div class="flex items-center gap-4 pt-4 border-t border-zinc-800">
-                                <a href="#" class="text-sm font-medium text-white hover:text-blue-400 flex items-center gap-1.5 transition-colors">
+                                <a href="#" class="text-sm font-medium text-white hover:text-emerald-400 flex items-center gap-1.5 transition-colors">
                                     Case Study <iconify-icon icon="solar:document-text-linear"></iconify-icon>
                                 </a>
                                 <a href="#" class="text-sm font-medium text-zinc-400 hover:text-white flex items-center gap-1.5 transition-colors">
@@ -225,159 +536,254 @@
                         </div>
                     </div>
 
-                    <!-- Project 3 -->
-                    <div class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/30 overflow-hidden hover:bg-zinc-900/60 hover:border-zinc-700 transition-all md:col-span-2 lg:col-span-1">
-                        <div class="aspect-video bg-zinc-950 flex items-center justify-center relative border-b border-zinc-800 overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-transparent"></div>
-                            <iconify-icon icon="solar:wallet-linear" class="text-6xl text-zinc-800 group-hover:text-purple-500/50 transition-colors duration-500"></iconify-icon>
+                    <!-- Project 3 — FinTech -->
+                    <div class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/20 overflow-hidden hover:border-purple-500/30 glow-card-purple glow-card transition-all md:col-span-2 reveal reveal-delay-3">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="project-preview md:w-2/5 md:h-auto bg-zinc-950" style="min-height:160px">
+                                <img src="images/projects/project-3.jpg" alt="FinTech Payment Gateway screenshot"
+                                     class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500"
+                                     onerror="this.style.display='none'">
+                                <div class="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-purple-950/10 to-transparent"></div>
+                                <div class="relative z-10 flex flex-col items-center gap-3 opacity-60 group-hover:opacity-90 transition-opacity duration-500">
+                                    <div class="w-16 h-10 rounded-lg border border-purple-500/30 bg-purple-500/10 flex items-center justify-center">
+                                        <iconify-icon icon="solar:card-linear" class="text-purple-300 text-2xl"></iconify-icon>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <div class="w-2 h-2 rounded-full bg-purple-400/70"></div>
+                                        <div class="w-2 h-2 rounded-full bg-purple-400/50"></div>
+                                        <div class="w-2 h-2 rounded-full bg-purple-400/70"></div>
+                                    </div>
+                                </div>
+                                <div class="project-number">03</div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-500/10 text-purple-300 rounded border border-purple-500/20">React</span>
+                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-500/10 text-purple-300 rounded border border-purple-500/20">Stripe API</span>
+                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-500/10 text-purple-300 rounded border border-purple-500/20">Node.js</span>
+                                </div>
+                                <h3 class="text-xl font-semibold text-white mb-3">FinTech Payment Gateway</h3>
+                                <div class="mb-6 flex-grow">
+                                    <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">The Challenge</p>
+                                    <p class="text-sm text-zinc-400 leading-relaxed">Developing a secure, PCI-compliant custom checkout experience. Integrated Stripe webhooks to handle asynchronous subscription states and complex invoicing logic at scale.</p>
+                                </div>
+                                <div class="flex items-center gap-4 pt-4 border-t border-zinc-800">
+                                    <span class="text-sm font-medium text-zinc-500 flex items-center gap-1.5">
+                                        <iconify-icon icon="solar:lock-linear"></iconify-icon> Private Repository
+                                    </span>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section id="about" class="py-24 border-t border-zinc-800/50">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+                    <!-- Left: about text -->
+                    <div class="space-y-6 reveal">
+                        <!-- Profile photo — add images/profile/avatar.jpg to show it -->
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden border border-zinc-700 bg-zinc-900 flex items-center justify-center">
+                            <img src="images/profile/avatar.jpg" alt="Shah Md. Arafatul Rahman"
+                                 class="w-full h-full object-cover"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <span style="display:none" class="w-full h-full items-center justify-center text-2xl font-bold text-zinc-500">A</span>
+                        </div>
+                        <div class="section-label">About Me</div>
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white">Passionate about building things that scale.</h2>
+                        <p class="text-zinc-400 leading-relaxed">
+                            I'm <span class="text-white font-medium">Shah Md. Arafatul Rahman</span>, a Laravel Developer based in <span class="text-white font-medium">Dhaka, Bangladesh</span> with around 5 years of professional experience. I focus on building clean, maintainable backend systems and full-stack web applications.
+                        </p>
+                        <p class="text-zinc-400 leading-relaxed">
+                            I'm actively seeking <span class="text-white font-medium">remote, freelance, or part-time opportunities</span> where I can contribute backend expertise, collaborate with global teams, and continue growing as an engineer.
+                        </p>
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-black bg-white rounded-lg hover:bg-zinc-100 transition-colors">
+                                Hire Me <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </a>
+                            <a href="mailto:arafatul985@gmail.com" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-zinc-300 border border-zinc-700 rounded-lg hover:bg-zinc-900 hover:border-zinc-500 transition-all">
+                                <iconify-icon icon="solar:letter-linear" class="text-blue-400"></iconify-icon>
+                                arafatul985@gmail.com
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: info cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal">
+
+                        <div class="p-5 rounded-2xl border border-zinc-800 bg-zinc-950/60 space-y-1">
+                            <div class="text-zinc-500 text-xs font-semibold uppercase tracking-wider mb-3">Location</div>
+                            <div class="flex items-center gap-2 text-white font-medium">
+                                <iconify-icon icon="solar:map-point-bold" class="text-emerald-400 text-lg"></iconify-icon>
+                                Dhaka, Bangladesh
+                            </div>
+                            <p class="text-xs text-zinc-500">UTC+6 · Available globally</p>
+                        </div>
+
+                        <div class="p-5 rounded-2xl border border-zinc-800 bg-zinc-950/60 space-y-1">
+                            <div class="text-zinc-500 text-xs font-semibold uppercase tracking-wider mb-3">Experience</div>
+                            <div class="flex items-center gap-2 text-white font-medium">
+                                <iconify-icon icon="solar:diploma-bold" class="text-blue-400 text-lg"></iconify-icon>
+                                ~5 Years
+                            </div>
+                            <p class="text-xs text-zinc-500">Laravel · PHP · Full-Stack</p>
+                        </div>
+
+                        <div class="p-5 rounded-2xl border border-zinc-800 bg-zinc-950/60 space-y-1">
+                            <div class="text-zinc-500 text-xs font-semibold uppercase tracking-wider mb-3">Availability</div>
+                            <div class="flex items-center gap-2 text-white font-medium">
+                                <iconify-icon icon="solar:clock-circle-bold" class="text-purple-400 text-lg"></iconify-icon>
+                                Open to Work
+                            </div>
+                            <p class="text-xs text-zinc-500">Remote · Freelance · Part-time</p>
+                        </div>
+
+                        <div class="p-5 rounded-2xl border border-zinc-800 bg-zinc-950/60 space-y-1">
+                            <div class="text-zinc-500 text-xs font-semibold uppercase tracking-wider mb-3">Contact</div>
+                            <div class="flex items-center gap-2 text-white font-medium text-sm">
+                                <iconify-icon icon="solar:phone-bold" class="text-yellow-400 text-lg flex-shrink-0"></iconify-icon>
+                                01738020985
+                            </div>
+                            <p class="text-xs text-zinc-500">Bangladesh · WhatsApp welcome</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ─── Blog / Case Studies ─── -->
+        <section id="blog" class="py-24 border-t border-zinc-800/50">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex items-end justify-between mb-16 reveal">
+                    <div>
+                        <div class="section-label">Writing</div>
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">Case Studies &amp; Blog</h2>
+                        <p class="text-zinc-400">Real projects, real problems, and how I solved them.</p>
+                    </div>
+                    <a href="blog/" class="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors">
+                        All posts <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <!-- Post 1 -->
+                    <a href="blog/laravel-redis-queue.html" class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 hover:bg-zinc-900/50 transition-all overflow-hidden reveal reveal-delay-1">
+                        <div class="h-2 bg-gradient-to-r from-blue-500 to-blue-400"></div>
                         <div class="p-6 flex flex-col flex-grow">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 text-xs font-medium bg-zinc-800 text-zinc-300 rounded">React</span>
-                                <span class="px-2 py-1 text-xs font-medium bg-zinc-800 text-zinc-300 rounded">Stripe API</span>
-                                <span class="px-2 py-1 text-xs font-medium bg-zinc-800 text-zinc-300 rounded">Node.js</span>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="px-2 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-300 rounded border border-blue-500/20">Laravel</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded">Redis</span>
                             </div>
-                            <h3 class="text-xl font-semibold text-white mb-2">FinTech Payment Gateway</h3>
-                            <div class="mb-6 space-y-2 flex-grow">
-                                <p class="text-sm font-medium text-zinc-300">The Challenge:</p>
-                                <p class="text-sm text-zinc-400 leading-relaxed">Developing a secure, PCI-compliant custom checkout experience. Integrated Stripe webhooks to handle asynchronous subscription states and complex invoicing logic.</p>
-                            </div>
-                            <div class="flex items-center gap-4 pt-4 border-t border-zinc-800">
-                                <a href="#" class="text-sm font-medium text-zinc-400 hover:text-white flex items-center gap-1.5 transition-colors">
-                                    Private Repo <iconify-icon icon="solar:lock-linear"></iconify-icon>
-                                </a>
+                            <h3 class="text-base font-semibold text-white mb-3 group-hover:text-blue-300 transition-colors leading-snug">
+                                How I Cut Report Generation Time by 85% with Laravel Queues &amp; Redis
+                            </h3>
+                            <p class="text-sm text-zinc-500 leading-relaxed flex-grow">
+                                A deep-dive into how I redesigned a slow analytics pipeline for an e-commerce platform using Laravel's queue system backed by Redis.
+                            </p>
+                            <div class="flex items-center justify-between mt-5 pt-4 border-t border-zinc-800/60 text-xs text-zinc-600">
+                                <span>5 min read</span>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-base group-hover:text-blue-400 transition-colors"></iconify-icon>
                             </div>
                         </div>
-                    </div>
+                    </a>
+
+                    <!-- Post 2 -->
+                    <a href="blog/docker-laravel-setup.html" class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 hover:bg-zinc-900/50 transition-all overflow-hidden reveal reveal-delay-2">
+                        <div class="h-2 bg-gradient-to-r from-emerald-500 to-emerald-400"></div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Docker</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded">DevOps</span>
+                            </div>
+                            <h3 class="text-base font-semibold text-white mb-3 group-hover:text-emerald-300 transition-colors leading-snug">
+                                Zero-Config Docker Setup for Laravel + MySQL + Redis (PHP 8)
+                            </h3>
+                            <p class="text-sm text-zinc-500 leading-relaxed flex-grow">
+                                A walkthrough of my open-source Docker Compose template that I use across all client projects — from local dev to production-ready deployment.
+                            </p>
+                            <div class="flex items-center justify-between mt-5 pt-4 border-t border-zinc-800/60 text-xs text-zinc-600">
+                                <span>7 min read</span>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-base group-hover:text-emerald-400 transition-colors"></iconify-icon>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Post 3 -->
+                    <a href="blog/freelancing-from-bangladesh.html" class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 hover:bg-zinc-900/50 transition-all overflow-hidden reveal reveal-delay-3">
+                        <div class="h-2 bg-gradient-to-r from-purple-500 to-purple-400"></div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="px-2 py-0.5 text-xs font-medium bg-purple-500/10 text-purple-300 rounded border border-purple-500/20">Career</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded">Freelance</span>
+                            </div>
+                            <h3 class="text-base font-semibold text-white mb-3 group-hover:text-purple-300 transition-colors leading-snug">
+                                How I Started Landing Remote Laravel Projects from Dhaka
+                            </h3>
+                            <p class="text-sm text-zinc-500 leading-relaxed flex-grow">
+                                My personal journey from local agency work to international freelance clients — the platforms, proposals, and lessons learned along the way.
+                            </p>
+                            <div class="flex items-center justify-between mt-5 pt-4 border-t border-zinc-800/60 text-xs text-zinc-600">
+                                <span>6 min read</span>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-base group-hover:text-purple-400 transition-colors"></iconify-icon>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- Mobile: all posts link -->
+                <div class="mt-8 text-center sm:hidden reveal">
+                    <a href="blog/" class="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors">
+                        All posts <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Experience & GitHub Layout -->
-        <section id="experience" class="py-24 border-t border-zinc-800/50 bg-zinc-900/10">
-            <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
-                
-                <!-- Timeline -->
-                <div>
-                    <h2 class="text-2xl font-semibold tracking-tight text-white mb-10">Career Trajectory</h2>
-                    <div class="relative border-l border-zinc-800 ml-3 space-y-12">
-                        
-                        <!-- Role 1 -->
-                        <div class="relative pl-8">
-                            <div class="absolute w-3 h-3 bg-blue-500 rounded-full -left-[6.5px] top-1.5 ring-4 ring-[#121212]"></div>
-                            <div class="text-xs font-medium text-blue-400 mb-1">2021 — Present</div>
-                            <h3 class="text-lg font-medium text-white">Senior Backend Engineer</h3>
-                            <div class="text-sm text-zinc-500 mb-3">TechCorp Solutions Inc.</div>
-                            <p class="text-sm text-zinc-400 leading-relaxed">Lead the backend architecture team. Migrated core legacy APIs to a modern Laravel 10 stack, improving response times by 40%. Spearheaded Docker containerization for local development.</p>
-                        </div>
-
-                        <!-- Role 2 -->
-                        <div class="relative pl-8">
-                            <div class="absolute w-3 h-3 bg-zinc-700 rounded-full -left-[6.5px] top-1.5 ring-4 ring-[#121212]"></div>
-                            <div class="text-xs font-medium text-zinc-500 mb-1">2018 — 2021</div>
-                            <h3 class="text-lg font-medium text-white">Full Stack Developer</h3>
-                            <div class="text-sm text-zinc-500 mb-3">StartupX Global</div>
-                            <p class="text-sm text-zinc-400 leading-relaxed">Developed end-to-end features using Vue.js and Laravel. Integrated third-party APIs (Stripe, Twilio) and managed MySQL database optimizations for high-traffic campaigns.</p>
-                        </div>
-
-                        <!-- Role 3 -->
-                        <div class="relative pl-8">
-                            <div class="absolute w-3 h-3 bg-zinc-700 rounded-full -left-[6.5px] top-1.5 ring-4 ring-[#121212]"></div>
-                            <div class="text-xs font-medium text-zinc-500 mb-1">2016 — 2018</div>
-                            <h3 class="text-lg font-medium text-white">Web Developer</h3>
-                            <div class="text-sm text-zinc-500 mb-3">Creative Agency Z</div>
-                            <p class="text-sm text-zinc-400 leading-relaxed">Built custom CMS solutions using raw PHP and early versions of Laravel. Worked closely with designers to implement pixel-perfect, responsive frontend interfaces.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- GitHub Integration Mock -->
-                <div id="github">
-                    <h2 class="text-2xl font-semibold tracking-tight text-white mb-10 flex items-center gap-3">
-                        <iconify-icon icon="solar:github-linear" class="text-3xl text-zinc-400"></iconify-icon>
-                        Open Source Activity
-                    </h2>
-                    
-                    <div class="space-y-4">
-                        <!-- Repo Card -->
-                        <a href="#" class="block p-5 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-700 hover:bg-zinc-900 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="text-base font-medium text-blue-400 flex items-center gap-2">
-                                    <iconify-icon icon="solar:folder-with-files-linear"></iconify-icon>
-                                    laravel-advanced-filters
-                                </h4>
-                                <span class="text-xs text-zinc-500 border border-zinc-800 rounded-full px-2 py-0.5">Public</span>
-                            </div>
-                            <p class="text-sm text-zinc-400 mb-4">A robust package for dynamically filtering Eloquent models based on complex query string parameters.</p>
-                            <div class="flex items-center gap-4 text-xs font-medium text-zinc-500">
-                                <div class="flex items-center gap-1.5">
-                                    <div class="w-2.5 h-2.5 rounded-full bg-[#4F5D95]"></div> PHP
-                                </div>
-                                <div class="flex items-center gap-1"><iconify-icon icon="solar:star-linear"></iconify-icon> 245</div>
-                                <div class="flex items-center gap-1"><iconify-icon icon="solar:branching-paths-linear"></iconify-icon> 32</div>
-                            </div>
-                        </a>
-
-                        <!-- Repo Card -->
-                        <a href="#" class="block p-5 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-700 hover:bg-zinc-900 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="text-base font-medium text-blue-400 flex items-center gap-2">
-                                    <iconify-icon icon="solar:folder-with-files-linear"></iconify-icon>
-                                    docker-php-dev-env
-                                </h4>
-                                <span class="text-xs text-zinc-500 border border-zinc-800 rounded-full px-2 py-0.5">Public</span>
-                            </div>
-                            <p class="text-sm text-zinc-400 mb-4">Highly optimized, zero-config Docker Compose setup for modern PHP 8 and Node.js development workflows.</p>
-                            <div class="flex items-center gap-4 text-xs font-medium text-zinc-500">
-                                <div class="flex items-center gap-1.5">
-                                    <div class="w-2.5 h-2.5 rounded-full bg-[#384d54]"></div> Dockerfile
-                                </div>
-                                <div class="flex items-center gap-1"><iconify-icon icon="solar:star-linear"></iconify-icon> 189</div>
-                                <div class="flex items-center gap-1"><iconify-icon icon="solar:branching-paths-linear"></iconify-icon> 15</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
+        <!-- ─── Testimonials ─── -->
         <section class="py-24 border-t border-zinc-800/50">
             <div class="max-w-6xl mx-auto px-6">
-                <h2 class="text-2xl font-semibold tracking-tight text-white mb-12 text-center">Endorsements</h2>
+                <div class="mb-12 text-center reveal">
+                    <div class="section-label justify-center">Social Proof</div>
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white">Endorsements</h2>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/30">
-                        <iconify-icon icon="solar:quote-right-linear" class="text-3xl text-zinc-700 mb-4"></iconify-icon>
-                        <p class="text-sm text-zinc-300 leading-relaxed mb-6">"JD completely transformed our backend infrastructure. His deep understanding of Laravel and Docker reduced our server costs by 30% while improving performance."</p>
+
+                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 transition-colors reveal reveal-delay-1">
+                        <iconify-icon icon="solar:quote-right-bold" class="text-2xl text-blue-500/30 mb-4 block"></iconify-icon>
+                        <p class="text-sm text-zinc-300 leading-relaxed mb-6">"JD completely transformed our backend infrastructure. His deep understanding of Laravel and Docker reduced our server costs by 30% while significantly improving performance."</p>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-sm font-medium text-white border border-zinc-700">SM</div>
+                            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">SM</div>
                             <div>
-                                <div class="text-sm font-medium text-white">Sarah Miller</div>
+                                <div class="text-sm font-semibold text-white">Sarah Miller</div>
                                 <div class="text-xs text-zinc-500">CTO, E-Commerce Pro</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/30">
-                        <iconify-icon icon="solar:quote-right-linear" class="text-3xl text-zinc-700 mb-4"></iconify-icon>
-                        <p class="text-sm text-zinc-300 leading-relaxed mb-6">"An exceptional problem solver. JD doesn't just write code; he architects solutions. His CI/CD implementation was a game-changer for our deployment workflow."</p>
+                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 transition-colors reveal reveal-delay-2">
+                        <iconify-icon icon="solar:quote-right-bold" class="text-2xl text-emerald-500/30 mb-4 block"></iconify-icon>
+                        <p class="text-sm text-zinc-300 leading-relaxed mb-6">"An exceptional problem solver. JD doesn't just write code — he architects solutions. His CI/CD implementation was a game-changer for our entire deployment workflow."</p>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-sm font-medium text-white border border-zinc-700">DR</div>
+                            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">DR</div>
                             <div>
-                                <div class="text-sm font-medium text-white">David Ross</div>
+                                <div class="text-sm font-semibold text-white">David Ross</div>
                                 <div class="text-xs text-zinc-500">Lead Engineer, StartupX</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/30 md:col-span-2 lg:col-span-1">
-                        <iconify-icon icon="solar:quote-right-linear" class="text-3xl text-zinc-700 mb-4"></iconify-icon>
-                        <p class="text-sm text-zinc-300 leading-relaxed mb-6">"Rarely do you find a developer who is equally strong in frontend logic and database optimization. A true full-stack asset to any engineering team."</p>
+                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 transition-colors md:col-span-2 lg:col-span-1 reveal reveal-delay-3">
+                        <iconify-icon icon="solar:quote-right-bold" class="text-2xl text-purple-500/30 mb-4 block"></iconify-icon>
+                        <p class="text-sm text-zinc-300 leading-relaxed mb-6">"Rarely do you find a developer equally strong in frontend logic and database optimization. A true full-stack asset to any engineering team."</p>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-sm font-medium text-white border border-zinc-700">AK</div>
+                            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">AK</div>
                             <div>
-                                <div class="text-sm font-medium text-white">Alex Kim</div>
+                                <div class="text-sm font-semibold text-white">Alex Kim</div>
                                 <div class="text-xs text-zinc-500">Product Manager</div>
                             </div>
                         </div>
@@ -387,51 +793,140 @@
             </div>
         </section>
 
-        <!-- Contact / CTA -->
+        <!-- ─── Contact ─── -->
         <section id="contact" class="py-24 lg:py-32 border-t border-zinc-800/50 relative overflow-hidden">
-            <!-- Background Glow -->
-            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-64 bg-blue-500/10 rounded-t-full blur-3xl -z-10"></div>
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-xl h-72 bg-blue-600/8 rounded-t-full blur-[80px] -z-10 pointer-events-none"></div>
+            <div class="absolute top-0 right-0 w-72 h-72 bg-emerald-600/5 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
 
-            <div class="max-w-xl mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4">Ready to Scale?</h2>
-                <p class="text-zinc-400 mb-10">Currently open to freelance opportunities and full-time senior roles. Let's discuss your system requirements.</p>
-                
-                <form class="space-y-6 text-left" onsubmit="event.preventDefault();">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="max-w-xl mx-auto px-6">
+                <div class="text-center mb-10 reveal">
+                    <div class="section-label justify-center">Contact</div>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">Let's Work Together</h2>
+                    <p class="text-zinc-400 mb-6">Available for remote, freelance, or part-time projects. Let's discuss what we can build together.</p>
+                    <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-zinc-400">
+                        <a href="mailto:arafatul985@gmail.com" class="flex items-center gap-2 hover:text-white transition-colors">
+                            <iconify-icon icon="solar:letter-linear" class="text-blue-400"></iconify-icon>
+                            arafatul985@gmail.com
+                        </a>
+                        <span class="text-zinc-700">·</span>
+                        <span class="flex items-center gap-2">
+                            <iconify-icon icon="solar:map-point-linear" class="text-emerald-400"></iconify-icon>
+                            Dhaka, Bangladesh
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Success message (hidden by default) -->
+                <div id="form-success" class="hidden mb-6 p-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 text-sm text-center">
+                    <iconify-icon icon="solar:check-circle-bold" class="text-lg mr-1.5"></iconify-icon>
+                    Message sent! I'll get back to you soon.
+                </div>
+
+                <form id="contact-form" class="space-y-5 text-left reveal">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div class="space-y-2">
-                            <label for="name" class="text-xs font-medium text-zinc-400 ml-1">Name</label>
-                            <input type="text" id="name" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-lg px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all" placeholder="John Doe">
+                            <label for="name" class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Name</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                placeholder="Your Name">
                         </div>
                         <div class="space-y-2">
-                            <label for="email" class="text-xs font-medium text-zinc-400 ml-1">Email</label>
-                            <input type="email" id="email" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-lg px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all" placeholder="john@company.com">
+                            <label for="email" class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Email</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                placeholder="you@company.com">
                         </div>
                     </div>
                     <div class="space-y-2">
-                        <label for="message" class="text-xs font-medium text-zinc-400 ml-1">Project Details</label>
-                        <textarea id="message" rows="4" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none" placeholder="Tell me about the architecture or problems you are trying to solve..."></textarea>
+                        <label for="message" class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Project Details</label>
+                        <textarea id="message" name="message" rows="4" required
+                            class="w-full bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none"
+                            placeholder="Describe the architecture or problem you're trying to solve..."></textarea>
                     </div>
-                    <button type="submit" class="w-full px-6 py-3 text-sm font-medium text-black bg-white rounded-lg hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2">
+                    <button type="submit"
+                        class="w-full px-6 py-3.5 text-sm font-semibold text-black bg-white rounded-xl hover:bg-zinc-100 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
                         Let's Build Something Scalable
                         <iconify-icon icon="solar:rocket-linear" class="text-lg"></iconify-icon>
                     </button>
                 </form>
             </div>
         </section>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-zinc-800/50 bg-[#121212] py-8 text-center">
+    <!-- ─── Footer ─── -->
+    <footer class="border-t border-zinc-800/50 bg-[#0a0a0a] py-8">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="text-lg font-semibold tracking-tighter text-white">JD.</div>
-            <p class="text-xs text-zinc-500">© 2023 JD Architect. Designed for performance.</p>
-            <div class="flex items-center gap-4 text-zinc-400">
-                <a href="#" class="hover:text-white transition-colors"><iconify-icon icon="solar:github-linear" class="text-xl"></iconify-icon></a>
-                <a href="#" class="hover:text-white transition-colors"><iconify-icon icon="solar:link-circle-linear" class="text-xl"></iconify-icon></a>
-                <a href="#" class="hover:text-white transition-colors"><iconify-icon icon="solar:letter-linear" class="text-xl"></iconify-icon></a>
+            <div class="text-lg font-bold tracking-tighter text-white">Arafatul.</div>
+            <p class="text-xs text-zinc-600">&copy; 2026 Shah Md. Arafatul Rahman · Dhaka, Bangladesh</p>
+            <div class="flex items-center gap-5 text-zinc-500">
+                <a href="https://github.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors hover:scale-110 transform inline-block" aria-label="GitHub">
+                    <iconify-icon icon="solar:github-linear" class="text-xl"></iconify-icon>
+                </a>
+                <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener" class="hover:text-white transition-colors hover:scale-110 transform inline-block" aria-label="LinkedIn">
+                    <iconify-icon icon="solar:link-circle-linear" class="text-xl"></iconify-icon>
+                </a>
+                <a href="mailto:arafatul985@gmail.com" class="hover:text-white transition-colors hover:scale-110 transform inline-block" aria-label="Email">
+                    <iconify-icon icon="solar:letter-linear" class="text-xl"></iconify-icon>
+                </a>
             </div>
         </div>
     </footer>
 
+    <script>
+    // ── Mobile nav toggle ──────────────────────────────
+    const hamBtn   = document.getElementById('ham-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    hamBtn.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.toggle('open');
+        hamBtn.classList.toggle('open', isOpen);
+        hamBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close on nav link click
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            hamBtn.classList.remove('open');
+            hamBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // ── Scroll reveal ──────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Contact form → mailto ──────────────────────────
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name    = document.getElementById('name').value.trim();
+        const email   = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        const subject = encodeURIComponent('Project Inquiry from ' + name);
+        const body    = encodeURIComponent(
+            'Name: ' + name + '\n' +
+            'Email: ' + email + '\n\n' +
+            'Message:\n' + message
+        );
+
+        window.location.href = 'mailto:arafatul985@gmail.com?subject=' + subject + '&body=' + body;
+
+        // Show success state
+        this.reset();
+        const success = document.getElementById('form-success');
+        success.classList.remove('hidden');
+        setTimeout(() => success.classList.add('hidden'), 5000);
+    });
+    </script>
 
 </body></html>

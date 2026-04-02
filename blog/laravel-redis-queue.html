@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I Cut Report Generation Time by 85% with Laravel Queues & Redis | Arafatul</title>
+    <meta name="description" content="A case study on redesigning a slow analytics pipeline using Laravel Queue backed by Redis — cutting report generation from 40s to 6s.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #d4d4d8; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .prose h2 { color: #fff; font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose p  { color: #a1a1aa; line-height: 1.75; margin-bottom: 1rem; }
+        .prose ul { color: #a1a1aa; padding-left: 1.25rem; margin-bottom: 1rem; list-style: disc; }
+        .prose ul li { margin-bottom: 0.4rem; line-height: 1.7; }
+        .prose strong { color: #e4e4e7; font-weight: 600; }
+        .code-block {
+            background: #111;
+            border: 1px solid #27272a;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.8;
+            overflow-x: auto;
+            margin-bottom: 1.25rem;
+            color: #a1a1aa;
+        }
+        .code-block .kw  { color: #60a5fa; }
+        .code-block .fn  { color: #34d399; }
+        .code-block .str { color: #fbbf24; }
+        .code-block .cm  { color: #52525b; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Nav -->
+    <header class="border-b border-zinc-800/50 bg-[#0a0a0a]/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm">
+                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> All Posts
+            </a>
+            <a href="../index.html" class="text-sm font-semibold text-white hover:text-blue-400 transition-colors">Arafatul.</a>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-3xl mx-auto px-6 py-16">
+
+        <!-- Header -->
+        <div class="mb-10">
+            <div class="flex flex-wrap gap-2 mb-5">
+                <span class="px-2 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-300 rounded border border-blue-500/20">Laravel</span>
+                <span class="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded">Redis</span>
+                <span class="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded">Case Study</span>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
+                How I Cut Report Generation Time by 85% with Laravel Queues &amp; Redis
+            </h1>
+            <div class="flex items-center gap-4 text-sm text-zinc-500">
+                <span class="flex items-center gap-1.5">
+                    <iconify-icon icon="solar:user-circle-linear" class="text-base"></iconify-icon>
+                    Shah Md. Arafatul Rahman
+                </span>
+                <span>·</span>
+                <span>5 min read</span>
+            </div>
+        </div>
+
+        <!-- Cover image — replace src when you have the image -->
+        <div class="mb-8 rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-950">
+            <img src="../images/blog/laravel-redis.jpg"
+                 alt="Laravel Redis Queue dashboard screenshot"
+                 class="w-full h-56 object-cover"
+                 onerror="this.parentElement.style.display='none'">
+        </div>
+
+        <!-- Divider -->
+        <div class="h-px bg-zinc-800 mb-10"></div>
+
+        <!-- Content -->
+        <article class="prose">
+
+            <h2>The Problem</h2>
+            <p>
+                A client's e-commerce platform was generating <strong>daily analytics reports</strong> that summarized millions of order events. Each report request would lock the request thread for up to <strong>40 seconds</strong>, causing timeouts and a terrible user experience. The dashboard was essentially unusable during peak hours.
+            </p>
+
+            <h2>Root Cause Analysis</h2>
+            <p>
+                The original code ran everything synchronously in a single controller method: fetching records, aggregating data, generating CSV files, and sending emails — all in one blocking request. With 2M+ rows in the orders table and no indexing strategy, even a simple GROUP BY query took 15+ seconds.
+            </p>
+            <ul>
+                <li>No database indexes on frequently-queried columns</li>
+                <li>Synchronous file generation blocking the HTTP thread</li>
+                <li>No caching — same expensive queries ran on every request</li>
+                <li>Email sending was inline, adding another 2–5 seconds</li>
+            </ul>
+
+            <h2>The Solution: Laravel Queues + Redis</h2>
+            <p>
+                I refactored the entire report pipeline into a <strong>queued job system</strong>. When a user requests a report, the controller dispatches a job and immediately returns a "processing" response. Redis acts as the queue driver, and a separate worker processes the job asynchronously.
+            </p>
+
+            <div class="code-block"><span class="cm">// ReportController.php</span>
+<span class="kw">public function</span> <span class="fn">generate</span>(Request $request)
+{
+    $job = <span class="kw">new</span> <span class="fn">GenerateAnalyticsReport</span>(
+        auth()->user(),
+        $request->date_range
+    );
+
+    <span class="fn">dispatch</span>($job)->onQueue(<span class="str">'reports'</span>);
+
+    <span class="kw">return</span> response()->json([
+        <span class="str">'status'</span>  => <span class="str">'queued'</span>,
+        <span class="str">'message'</span> => <span class="str">'Your report is being generated.'</span>,
+    ]);
+}</div>
+
+            <h2>Adding Redis Caching</h2>
+            <p>
+                For frequently requested date ranges (last 7 days, last 30 days), I added a <strong>Redis cache layer</strong> with a 1-hour TTL. This means repeated requests for the same report serve instantly from cache instead of re-querying the database.
+            </p>
+
+            <div class="code-block"><span class="cm">// Inside GenerateAnalyticsReport job</span>
+$cacheKey = <span class="str">"report:{$this->user->id}:{$this->dateRange}"</span>;
+
+$data = Cache::<span class="fn">remember</span>($cacheKey, 3600, <span class="kw">function</span> () {
+    <span class="kw">return</span> Order::<span class="fn">whereBetween</span>(<span class="str">'created_at'</span>, $this->range)
+        -><span class="fn">selectRaw</span>(<span class="str">'DATE(created_at) as date, SUM(total) as revenue, COUNT(*) as orders'</span>)
+        -><span class="fn">groupBy</span>(<span class="str">'date'</span>)
+        -><span class="fn">get</span>();
+});</div>
+
+            <h2>Results</h2>
+            <ul>
+                <li><strong>Report generation time:</strong> 40s → 6s (85% reduction)</li>
+                <li><strong>HTTP response time:</strong> 40s → &lt;100ms (instant queue dispatch)</li>
+                <li><strong>Server load:</strong> Reduced by ~60% during peak hours</li>
+                <li><strong>User experience:</strong> Dashboard now shows real-time progress via polling</li>
+            </ul>
+
+            <h2>Key Takeaways</h2>
+            <p>
+                Moving long-running operations off the HTTP thread is one of the highest-impact optimizations you can make in Laravel. The combination of <strong>Redis queues + caching</strong> is a proven pattern for any report generation, data export, or notification system. Start with this before reaching for more complex solutions.
+            </p>
+
+        </article>
+
+        <!-- Back link -->
+        <div class="mt-12 pt-8 border-t border-zinc-800 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors">
+                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> All Posts
+            </a>
+            <a href="../index.html#contact" class="flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors">
+                Work with me <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="border-t border-zinc-800/50 py-6 text-center text-xs text-zinc-600">
+        &copy; 2026 Shah Md. Arafatul Rahman &middot;
+        <a href="../index.html" class="hover:text-zinc-400 transition-colors">Portfolio</a>
+    </footer>
+
+</body>
+</html>

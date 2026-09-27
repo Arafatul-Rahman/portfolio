@@ -14,8 +14,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
-            color: #d4d4d8;
+            background-color: #ffffff;
+            color: #1a1a1a;
         }
         .font-mono {
             font-family: 'JetBrains Mono', monospace;
@@ -23,8 +23,8 @@
         /* Grid background */
         .bg-grid {
             background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-image: linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
         }
 
         /* ---- Scroll reveal ---- */
@@ -59,7 +59,7 @@
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .glow-card:hover {
-            box-shadow: 0 0 0 1px rgba(59,130,246,0.3), 0 8px 32px rgba(59,130,246,0.08);
+            box-shadow: 0 0 0 1px rgba(34,197,94,0.3), 0 8px 32px rgba(34,197,94,0.08);
         }
         .glow-card-emerald:hover {
             box-shadow: 0 0 0 1px rgba(16,185,129,0.3), 0 8px 32px rgba(16,185,129,0.08);
@@ -77,7 +77,7 @@
             font-weight: 600;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: #60a5fa;
+            color: #16a34a;
             margin-bottom: 12px;
         }
         .section-label::before {
@@ -85,7 +85,7 @@
             display: block;
             width: 20px;
             height: 1px;
-            background: #60a5fa;
+            background: #16a34a;
         }
 
         /* ---- Project card preview area ---- */
@@ -96,7 +96,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid #27272a;
+            border-bottom: 1px solid #e4e4e7;
         }
         .project-number {
             position: absolute;
@@ -107,7 +107,7 @@
             font-weight: 700;
             line-height: 1;
             opacity: 0.06;
-            color: #fff;
+            color: #000;
             user-select: none;
         }
 
@@ -115,12 +115,12 @@
         .stat-divider {
             width: 1px;
             height: 32px;
-            background: #27272a;
+            background: #d1d5db;
         }
 
         /* ---- Gradient text ---- */
         .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #34d399);
+            background: linear-gradient(135deg, #16a34a, #84cc16);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -132,7 +132,7 @@
             position: absolute;
             inset: -4px;
             border-radius: 50%;
-            border: 1px solid rgba(96,165,250,0.4);
+            border: 1px solid rgba(22,163,74,0.4);
             animation: ring-pulse 2s ease-out infinite;
         }
         @keyframes ring-pulse {
@@ -142,7 +142,7 @@
 
         /* ---- Focus styles ---- */
         a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-            outline: 2px solid #3b82f6;
+            outline: 2px solid #16a34a;
             outline-offset: 3px;
         }
 
@@ -151,35 +151,64 @@
             display: block;
             width: 22px;
             height: 2px;
-            background: #d4d4d8;
+            background: #374151;
             border-radius: 2px;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
         #ham-btn.open .ham-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
         #ham-btn.open .ham-bar:nth-child(2) { opacity: 0; }
         #ham-btn.open .ham-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+        /* ---- Header nav link active underline ---- */
+        .nav-desktop-link {
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-desktop-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: #16a34a;
+            border-radius: 2px;
+            transition: width 0.25s ease;
+        }
+        .nav-desktop-link:hover::after { width: 100%; }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-500/30 selection:text-blue-200 flex flex-col min-h-screen">
+<body class="antialiased selection:bg-green-200 selection:text-green-900 flex flex-col min-h-screen">
 
     <!-- Navigation -->
-    <header class="fixed top-0 inset-x-0 z-50 border-b border-zinc-800/50 bg-[#0a0a0a]/85 backdrop-blur-md">
+    <header class="fixed top-0 inset-x-0 z-50 border-b border-gray-200/80 bg-white/90 backdrop-blur-md shadow-sm">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="text-lg font-bold tracking-tighter text-white hover:text-blue-400 transition-colors">
-                Arafatul.
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-lg bg-green-600 flex items-center justify-center shadow-sm group-hover:bg-green-700 transition-colors">
+                    <span class="text-white font-bold text-sm font-mono">A</span>
+                </div>
+                <div class="leading-tight">
+                    <span class="text-base font-bold tracking-tight text-gray-900">Arafatul</span>
+                    <span class="text-base font-bold tracking-tight text-green-600">.</span>
+                    <div class="text-[9px] font-semibold text-gray-400 uppercase tracking-widest -mt-0.5">Laravel · DevOps</div>
+                </div>
             </a>
+
             <!-- Desktop nav -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <a href="#stack" class="hover:text-white transition-colors">Stack</a>
-                <a href="#projects" class="hover:text-white transition-colors">Projects</a>
-                <a href="#blog" class="hover:text-white transition-colors">Blog</a>
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-gray-600">
+                <a href="#about"    class="nav-desktop-link hover:text-gray-900 transition-colors">About</a>
+                <a href="#stack"    class="nav-desktop-link hover:text-gray-900 transition-colors">Stack</a>
+                <a href="#projects" class="nav-desktop-link hover:text-gray-900 transition-colors">Projects</a>
+                <a href="#blog"     class="nav-desktop-link hover:text-gray-900 transition-colors">Blog</a>
             </nav>
-            <a href="#contact" class="hidden md:inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-zinc-800 hover:bg-zinc-700 rounded-lg border border-zinc-700 transition-colors">
+
+            <!-- CTA button -->
+            <a href="#contact" class="hidden md:inline-flex items-center justify-center px-5 py-2 text-sm font-semibold text-white bg-green-600 hover:bg-green-700 rounded-lg shadow-sm transition-colors gap-2">
                 Let's Talk
+                <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
             </a>
+
             <!-- Mobile hamburger -->
-            <button id="ham-btn" class="md:hidden flex flex-col gap-[5px] p-2 rounded-lg hover:bg-zinc-800 transition-colors" aria-label="Toggle navigation">
+            <button id="ham-btn" class="md:hidden flex flex-col gap-[5px] p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Toggle navigation">
                 <span class="ham-bar"></span>
                 <span class="ham-bar"></span>
                 <span class="ham-bar"></span>
@@ -187,176 +216,176 @@
         </div>
         <!-- Mobile nav panel -->
         <div id="mobile-nav">
-            <nav class="flex flex-col gap-1 px-6 pb-4 text-sm font-medium text-zinc-300 border-t border-zinc-800/50">
-                <a href="#about"    class="nav-link py-3 hover:text-white transition-colors border-b border-zinc-800/30">About</a>
-                <a href="#stack"    class="nav-link py-3 hover:text-white transition-colors border-b border-zinc-800/30">Stack</a>
-                <a href="#projects" class="nav-link py-3 hover:text-white transition-colors border-b border-zinc-800/30">Projects</a>
-                <a href="#blog"     class="nav-link py-3 hover:text-white transition-colors border-b border-zinc-800/30">Blog</a>
-                <a href="#contact"  class="nav-link mt-2 py-2.5 text-center text-white bg-zinc-800 hover:bg-zinc-700 rounded-lg border border-zinc-700 transition-colors">Let's Talk</a>
+            <nav class="flex flex-col gap-1 px-6 pb-4 text-sm font-medium text-gray-600 border-t border-gray-200/80 bg-white">
+                <a href="#about"    class="nav-link py-3 hover:text-gray-900 transition-colors border-b border-gray-100">About</a>
+                <a href="#stack"    class="nav-link py-3 hover:text-gray-900 transition-colors border-b border-gray-100">Stack</a>
+                <a href="#projects" class="nav-link py-3 hover:text-gray-900 transition-colors border-b border-gray-100">Projects</a>
+                <a href="#blog"     class="nav-link py-3 hover:text-gray-900 transition-colors border-b border-gray-100">Blog</a>
+                <a href="#contact"  class="nav-link mt-2 py-2.5 text-center text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors font-semibold">Let's Talk</a>
             </nav>
         </div>
     </header>
 
+
     <main class="flex-grow pt-16">
 
         <!-- ─── Hero ─── -->
-        <section class="relative max-w-6xl mx-auto px-6 py-28 md:py-36 lg:py-44 flex flex-col lg:flex-row items-center gap-16">
+        <section class="relative max-w-6xl mx-auto px-6 pt-8 pb-16 md:pt-12 md:pb-24 lg:pt-14 lg:pb-28 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <div class="absolute inset-0 bg-grid -z-10 [mask-image:radial-gradient(ellipse_at_center,white,transparent_75%)]"></div>
             <!-- Background glow blobs -->
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/8 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-emerald-600/8 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-green-400/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-lime-400/10 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
             <div class="flex-1 space-y-8 text-center lg:text-left relative z-10">
                 <!-- Status badge -->
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/8 text-blue-400 text-xs font-medium reveal visible">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-green-500/40 bg-green-50 text-green-700 text-xs font-medium reveal visible">
                     <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-600"></span>
                     </span>
                     Open to remote &amp; freelance work
                 </div>
 
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] reveal visible">
-                    Hi, I'm <span class="gradient-text">Arafatul</span> — Laravel Developer &amp; DevOps Engineer.
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-[1.1] reveal visible">
+                    Hi, I'm <span class="gradient-text">Arafatul</span> — Laravel Developer.
                 </h1>
 
-                <p class="text-lg text-zinc-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed reveal visible">
-                    Based in <span class="text-zinc-300">Dhaka, Bangladesh</span> with ~5 years of experience. I build high-performance Laravel APIs and automate deployments with Docker, CI/CD, and cloud infrastructure.
+                <p class="text-lg text-gray-500 max-w-2xl mx-auto lg:mx-0 leading-relaxed reveal visible">
+                    Based in <span class="text-gray-700 font-medium">Dhaka, Bangladesh</span> with ~5 years of experience. I build high-performance Laravel APIs and automate deployments with Docker, CI/CD, and cloud infrastructure.
                 </p>
 
                 <!-- Stats bar -->
                 <div class="flex items-center gap-6 justify-center lg:justify-start reveal visible">
                     <div class="text-center lg:text-left">
-                        <div class="text-2xl font-bold text-white"><span class="counter" data-target="8" data-suffix="+">0</span></div>
-                        <div class="text-xs text-zinc-500 mt-0.5">Years Exp.</div>
+                        <div class="text-2xl font-bold text-gray-900"><span class="counter" data-target="8" data-suffix="+">0</span></div>
+                        <div class="text-xs text-gray-400 mt-0.5">Years Exp.</div>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="text-center lg:text-left">
-                        <div class="text-2xl font-bold text-white"><span class="counter" data-target="30" data-suffix="+">0</span></div>
-                        <div class="text-xs text-zinc-500 mt-0.5">Projects</div>
+                        <div class="text-2xl font-bold text-gray-900"><span class="counter" data-target="30" data-suffix="+">0</span></div>
+                        <div class="text-xs text-gray-400 mt-0.5">Projects</div>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="text-center lg:text-left">
-                        <div class="text-2xl font-bold text-white">Remote</div>
-                        <div class="text-xs text-zinc-500 mt-0.5">Available</div>
+                        <div class="text-2xl font-bold text-gray-900">Remote</div>
+                        <div class="text-xs text-gray-400 mt-0.5">Available</div>
                     </div>
                 </div>
 
                 <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start reveal visible">
-                    <a href="#projects" class="w-full sm:w-auto px-6 py-3 text-sm font-semibold text-black bg-white rounded-lg hover:bg-zinc-100 transition-colors flex items-center justify-center gap-2">
+                    <a href="#projects" class="w-full sm:w-auto px-6 py-3 text-sm font-semibold text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-sm">
                         View Projects
                         <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
                     </a>
-                    <a href="#github" class="w-full sm:w-auto px-6 py-3 text-sm font-medium text-zinc-300 bg-transparent border border-zinc-700 rounded-lg hover:bg-zinc-900 hover:border-zinc-500 transition-all flex items-center justify-center gap-2">
+                    <a href="#github" class="w-full sm:w-auto px-6 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all flex items-center justify-center gap-2 shadow-sm">
                         <iconify-icon icon="solar:code-circle-linear" class="text-base"></iconify-icon>
                         GitHub Profile
                     </a>
                 </div>
             </div>
 
-            <!-- Terminal mockup -->
+
+            <!-- Code Mockup (CodeWithHarry Style) -->
             <div class="flex-1 w-full lg:w-auto relative group">
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-blue-500/15 rounded-full blur-[80px] -z-10 group-hover:bg-blue-500/25 transition-all duration-700"></div>
-                <div class="rounded-xl border border-zinc-700/60 bg-zinc-950/90 backdrop-blur-sm overflow-hidden shadow-2xl transition-transform duration-500 hover:scale-[1.01]">
-                    <!-- Window bar with colored dots -->
-                    <div class="flex items-center px-4 py-3 border-b border-zinc-800 bg-zinc-900/70">
-                        <div class="flex gap-1.5">
-                            <div class="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-500 transition-colors cursor-default"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 transition-colors cursor-default"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 transition-colors cursor-default"></div>
-                        </div>
-                        <div class="ml-4 text-xs font-medium text-zinc-500 font-mono">deploy.sh — bash</div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-green-500/10 rounded-full blur-[80px] -z-10 group-hover:bg-green-500/15 transition-all duration-700"></div>
+                <div class="rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-xl shadow-gray-200/50 transition-transform duration-500 hover:scale-[1.01]">
+                    <!-- Window bar -->
+                    <div class="flex items-center justify-between px-5 py-3 border-b border-gray-100 bg-gray-50/80">
+                        <span class="text-xs font-semibold text-gray-500 font-mono">your_journey.py</span>
+                        <span class="text-xs font-semibold text-gray-400 font-mono">&gt;_</span>
                     </div>
-                    <div class="p-5 font-mono text-sm text-zinc-400 leading-loose overflow-x-auto">
-                        <div><span class="text-blue-400">arafatul@server</span>:<span class="text-emerald-400">~/app</span><span class="text-zinc-500">$</span> docker-compose up -d</div>
-                        <div class="text-zinc-600 pl-2">Creating network "app_network" ... done</div>
-                        <div class="text-zinc-600 pl-2">Creating app_redis_1  ............. <span class="text-emerald-500">done</span></div>
-                        <div class="text-zinc-600 pl-2">Creating app_mysql_1  ............. <span class="text-emerald-500">done</span></div>
-                        <div class="text-zinc-600 pl-2">Creating app_laravel_1 ............ <span class="text-emerald-500">done</span></div>
-                        <div class="mt-2"><span class="text-blue-400">arafatul@server</span>:<span class="text-emerald-400">~/app</span><span class="text-zinc-500">$</span> php artisan optimize</div>
-                        <div class="text-zinc-400 pl-2">Configuration cached successfully.</div>
-                        <div class="text-zinc-400 pl-2">Routes cached successfully.</div>
-                        <div class="text-emerald-400 pl-2">Application optimized. <span class="animate-pulse text-zinc-400">█</span></div>
+                    <div class="p-6 font-mono text-sm leading-loose overflow-x-auto space-y-4">
+                        <div class="text-gray-400 italic"># A little progress, every day.</div>
+                        <div class="space-y-1 text-gray-800">
+                            <div><span class="text-purple-600 font-semibold">while</span> <span class="text-gray-900 font-medium">curious</span>:</div>
+                            <div class="pl-6 text-emerald-600 font-medium">learn()</div>
+                            <div class="pl-6 text-blue-600 font-medium">build()</div>
+                            <div class="pl-6 text-green-600 font-semibold">grow()</div>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 flex items-center gap-2 text-xs text-gray-500">
+                            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                            <span>Your future is a work in progress.</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- ─── Experience & Open Source ─── -->
-        <section id="experience" class="py-24 border-t border-zinc-800/50 bg-zinc-900/5">
+        <section id="experience" class="py-24 border-t border-gray-200 bg-gray-50">
             <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
 
                 <!-- Timeline -->
                 <div>
                     <div class="section-label reveal">Career</div>
-                    <h2 class="text-2xl font-bold tracking-tight text-white mb-10 reveal">Career Trajectory</h2>
-                    <div class="relative border-l border-zinc-800 ml-3 space-y-10">
+                    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-10 reveal">Career Trajectory</h2>
+                    <div class="relative border-l border-gray-200 ml-3 space-y-10">
 
                         <!-- Job 1: Dingi Dev -->
                         <div class="relative pl-8 reveal reveal-delay-1">
-                            <div class="absolute w-3 h-3 bg-blue-500 rounded-full -left-[6.5px] top-1.5 ring-4 ring-[#0a0a0a] dot-active"></div>
-                            <div class="text-xs font-semibold text-blue-400 mb-1 tracking-wide">2022 — 2026</div>
-                            <h3 class="text-base font-semibold text-white">Laravel Developer</h3>
-                            <div class="text-sm text-zinc-500 mb-3">Dingi Dev · Remote</div>
+                            <div class="absolute w-3 h-3 bg-blue-600 rounded-full -left-[6.5px] top-1.5 ring-4 ring-white dot-active"></div>
+                            <div class="text-xs font-bold text-blue-600 mb-1 tracking-wide">2022 — 2026</div>
+                            <h3 class="text-base font-bold text-gray-900">Laravel Developer</h3>
+                            <div class="text-sm font-medium text-gray-500 mb-3">Dingi Dev · Remote</div>
                             <div class="flex flex-wrap gap-2 mb-3">
-                                <span class="px-2 py-0.5 text-xs bg-blue-500/10 text-blue-300 border border-blue-500/20 rounded">Employee Management</span>
-                                <span class="px-2 py-0.5 text-xs bg-blue-500/10 text-blue-300 border border-blue-500/20 rounded">Europe Scheduling System</span>
-                                <span class="px-2 py-0.5 text-xs bg-blue-500/10 text-blue-300 border border-blue-500/20 rounded">Holiday Management</span>
+                                <span class="px-2.5 py-1 text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 rounded-md">Employee Management</span>
+                                <span class="px-2.5 py-1 text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 rounded-md">Europe Scheduling System</span>
+                                <span class="px-2.5 py-1 text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 rounded-md">Holiday Management</span>
                             </div>
-                            <ul class="space-y-1.5 text-sm text-zinc-400">
-                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-blue-400 text-base flex-shrink-0 mt-0.5"></iconify-icon>Built shift-wise scheduling system for Europe-based workforce with timezone support</li>
-                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-blue-400 text-base flex-shrink-0 mt-0.5"></iconify-icon>Developed leave, vacation, overtime &amp; compensation calculation engine</li>
-                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-blue-400 text-base flex-shrink-0 mt-0.5"></iconify-icon>Implemented holiday module with country-specific rules</li>
-                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-blue-400 text-base flex-shrink-0 mt-0.5"></iconify-icon>Stack: Laravel · Vue.js · Livewire · VPS · Git · Server admin</li>
+                            <ul class="space-y-1.5 text-sm text-gray-600">
+                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-blue-600 text-base flex-shrink-0 mt-0.5"></iconify-icon>Built shift-wise scheduling system for Europe-based workforce with timezone support</li>
+                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-blue-600 text-base flex-shrink-0 mt-0.5"></iconify-icon>Developed leave, vacation, overtime &amp; compensation calculation engine</li>
+                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-blue-600 text-base flex-shrink-0 mt-0.5"></iconify-icon>Implemented holiday module with country-specific rules</li>
+                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-blue-600 text-base flex-shrink-0 mt-0.5"></iconify-icon>Stack: Laravel · Vue.js · Livewire · VPS · Git · Server admin</li>
                             </ul>
                         </div>
 
                         <!-- Job 2: Innovation Information System -->
                         <div class="relative pl-8 reveal reveal-delay-2">
-                            <div class="absolute w-3 h-3 bg-zinc-600 rounded-full -left-[6.5px] top-1.5 ring-4 ring-[#0a0a0a]"></div>
-                            <div class="text-xs font-semibold text-zinc-500 mb-1 tracking-wide">2019 — 2022</div>
-                            <h3 class="text-base font-semibold text-white">Full Stack Developer</h3>
-                            <div class="text-sm text-zinc-500 mb-3">Innovation Information System Ltd · Dhaka</div>
+                            <div class="absolute w-3 h-3 bg-gray-400 rounded-full -left-[6.5px] top-1.5 ring-4 ring-white"></div>
+                            <div class="text-xs font-bold text-gray-500 mb-1 tracking-wide">2019 — 2022</div>
+                            <h3 class="text-base font-bold text-gray-900">Full Stack Developer</h3>
+                            <div class="text-sm font-medium text-gray-500 mb-3">Innovation Information System Ltd · Dhaka</div>
                             <div class="flex flex-wrap gap-2 mb-3">
-                                <span class="px-2 py-0.5 text-xs bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded">POS System</span>
-                                <span class="px-2 py-0.5 text-xs bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded">Inventory System</span>
-                                <span class="px-2 py-0.5 text-xs bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded">Online Learning Platform</span>
+                                <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-md">POS System</span>
+                                <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-md">Inventory System</span>
+                                <span class="px-2.5 py-1 text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-md">Online Learning Platform</span>
                             </div>
-                            <ul class="space-y-1.5 text-sm text-zinc-400">
-                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-400 text-base flex-shrink-0 mt-0.5"></iconify-icon>Built POS &amp; Inventory system from scratch for Banglatussie using Laravel</li>
-                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-400 text-base flex-shrink-0 mt-0.5"></iconify-icon>Designed product management, sales reporting &amp; stock tracking modules</li>
-                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-400 text-base flex-shrink-0 mt-0.5"></iconify-icon>Team contributor on online learning platform development</li>
+                            <ul class="space-y-1.5 text-sm text-gray-600">
+                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-600 text-base flex-shrink-0 mt-0.5"></iconify-icon>Built POS &amp; Inventory system from scratch for Banglatussie using Laravel</li>
+                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-600 text-base flex-shrink-0 mt-0.5"></iconify-icon>Designed product management, sales reporting &amp; stock tracking modules</li>
+                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-600 text-base flex-shrink-0 mt-0.5"></iconify-icon>Team contributor on online learning platform development</li>
                             </ul>
                         </div>
 
                         <!-- Job 3: BdTender part-time dev -->
                         <div class="relative pl-8 reveal reveal-delay-3">
-                            <div class="absolute w-3 h-3 bg-zinc-600 rounded-full -left-[6.5px] top-1.5 ring-4 ring-[#0a0a0a]"></div>
-                            <div class="text-xs font-semibold text-zinc-500 mb-1 tracking-wide">2021 — 2025 <span class="text-zinc-700 font-normal">(part-time)</span></div>
-                            <h3 class="text-base font-semibold text-white">Software Developer</h3>
-                            <div class="text-sm text-zinc-500 mb-3">BdTender · Dhaka</div>
+                            <div class="absolute w-3 h-3 bg-gray-400 rounded-full -left-[6.5px] top-1.5 ring-4 ring-white"></div>
+                            <div class="text-xs font-bold text-gray-500 mb-1 tracking-wide">2021 — 2025 <span class="text-gray-400 font-normal">(part-time)</span></div>
+                            <h3 class="text-base font-bold text-gray-900">Software Developer</h3>
+                            <div class="text-sm font-medium text-gray-500 mb-3">BdTender · Dhaka</div>
                             <div class="flex flex-wrap gap-2 mb-3">
-                                <span class="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-400 border border-zinc-700 rounded">Laravel</span>
-                                <span class="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-400 border border-zinc-700 rounded">Ajax</span>
+                                <span class="px-2.5 py-1 text-xs font-semibold bg-gray-100 text-gray-700 border border-gray-200 rounded-md">Laravel</span>
+                                <span class="px-2.5 py-1 text-xs font-semibold bg-gray-100 text-gray-700 border border-gray-200 rounded-md">Ajax</span>
                             </div>
-                            <ul class="space-y-1.5 text-sm text-zinc-400">
-                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-zinc-500 text-base flex-shrink-0 mt-0.5"></iconify-icon>Built software solutions part-time using Laravel and Ajax</li>
-                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-zinc-500 text-base flex-shrink-0 mt-0.5"></iconify-icon>Developed dynamic features with Ajax for smooth user interactions</li>
+                            <ul class="space-y-1.5 text-sm text-gray-600">
+                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-gray-400 text-base flex-shrink-0 mt-0.5"></iconify-icon>Built software solutions part-time using Laravel and Ajax</li>
+                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-gray-400 text-base flex-shrink-0 mt-0.5"></iconify-icon>Developed dynamic features with Ajax for smooth user interactions</li>
                             </ul>
                         </div>
 
                         <!-- Job 4: BdTender support -->
                         <div class="relative pl-8 reveal reveal-delay-4">
-                            <div class="absolute w-3 h-3 bg-zinc-700 rounded-full -left-[6.5px] top-1.5 ring-4 ring-[#0a0a0a]"></div>
-                            <div class="text-xs font-semibold text-zinc-600 mb-1 tracking-wide">2018 — 2019</div>
-                            <h3 class="text-base font-semibold text-white">Support Engineer</h3>
-                            <div class="text-sm text-zinc-500 mb-3">BdTender · Dhaka</div>
+                            <div class="absolute w-3 h-3 bg-gray-300 rounded-full -left-[6.5px] top-1.5 ring-4 ring-white"></div>
+                            <div class="text-xs font-bold text-gray-500 mb-1 tracking-wide">2018 — 2019</div>
+                            <h3 class="text-base font-bold text-gray-900">Support Engineer</h3>
+                            <div class="text-sm font-medium text-gray-500 mb-3">BdTender · Dhaka</div>
                             <div class="flex flex-wrap gap-2 mb-3">
-                                <span class="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-500 border border-zinc-700/50 rounded">School Management System</span>
+                                <span class="px-2.5 py-1 text-xs font-semibold bg-gray-100 text-gray-700 border border-gray-200 rounded-md">School Management System</span>
                             </div>
-                            <ul class="space-y-1.5 text-sm text-zinc-500">
-                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-zinc-600 text-base flex-shrink-0 mt-0.5"></iconify-icon>Provided technical support for school management system clients</li>
-                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-zinc-600 text-base flex-shrink-0 mt-0.5"></iconify-icon>Gathered client requirements and relayed to the dev team</li>
-                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-zinc-600 text-base flex-shrink-0 mt-0.5"></iconify-icon>Acted as bridge between clients and programmers for bug fixes &amp; features</li>
+                            <ul class="space-y-1.5 text-sm text-gray-400">
+                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-gray-300 text-base flex-shrink-0 mt-0.5"></iconify-icon>Provided technical support for school management system clients</li>
+                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-gray-300 text-base flex-shrink-0 mt-0.5"></iconify-icon>Gathered client requirements and relayed to the dev team</li>
+                                <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" class="text-gray-300 text-base flex-shrink-0 mt-0.5"></iconify-icon>Acted as bridge between clients and programmers for bug fixes &amp; features</li>
                             </ul>
                         </div>
 
@@ -366,47 +395,81 @@
                 <!-- Services -->
                 <div id="services">
                     <div class="section-label reveal">Services</div>
-                    <h2 class="text-2xl font-bold tracking-tight text-white mb-10 reveal">What I Build For You</h2>
+                    <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-10 reveal">What I Build For You</h2>
 
                     <div class="space-y-4">
 
-                        <div class="flex items-start gap-4 p-5 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-blue-500/30 hover:bg-zinc-900/70 transition-all reveal reveal-delay-1">
+
+                        <div class="flex items-start gap-4 p-5 rounded-xl border border-gray-200 bg-white hover:border-blue-500/30 hover:bg-gray-50 transition-all reveal reveal-delay-1">
                             <div class="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0 text-blue-400">
                                 <iconify-icon icon="solar:code-square-linear" width="20"></iconify-icon>
                             </div>
                             <div>
-                                <h4 class="text-sm font-semibold text-white mb-1">Laravel API Development</h4>
-                                <p class="text-sm text-zinc-500 leading-relaxed">REST APIs, Sanctum/Passport auth, multi-tenant SaaS, queues, scheduling, and clean architecture.</p>
+                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Laravel API Development</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">REST APIs, Sanctum/Passport auth, multi-tenant SaaS, queues, scheduling, and clean architecture.</p>
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-4 p-5 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-emerald-500/30 hover:bg-zinc-900/70 transition-all reveal reveal-delay-2">
+                        <div class="flex items-start gap-4 p-5 rounded-xl border border-gray-200 bg-white hover:border-emerald-500/30 hover:bg-gray-50 transition-all reveal reveal-delay-2">
                             <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 text-emerald-400">
                                 <iconify-icon icon="solar:cloud-check-linear" width="20"></iconify-icon>
                             </div>
                             <div>
-                                <h4 class="text-sm font-semibold text-white mb-1">Docker & Server Setup</h4>
-                                <p class="text-sm text-zinc-500 leading-relaxed">Containerize Laravel apps with Docker Compose, configure Nginx, SSL, and deploy to AWS or VPS.</p>
+                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Docker &amp; Server Setup</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Containerize Laravel apps with Docker Compose, configure Nginx, SSL, and deploy to AWS or VPS.</p>
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-4 p-5 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-purple-500/30 hover:bg-zinc-900/70 transition-all reveal reveal-delay-3">
+                        <div class="flex items-start gap-4 p-5 rounded-xl border border-gray-200 bg-white hover:border-purple-500/30 hover:bg-gray-50 transition-all reveal reveal-delay-3">
                             <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center flex-shrink-0 text-purple-400">
                                 <iconify-icon icon="solar:branching-paths-linear" width="20"></iconify-icon>
                             </div>
                             <div>
-                                <h4 class="text-sm font-semibold text-white mb-1">CI/CD Pipeline Setup</h4>
-                                <p class="text-sm text-zinc-500 leading-relaxed">Automated testing and zero-downtime deployments using GitHub Actions — push to deploy, every time.</p>
+                                <h4 class="text-sm font-semibold text-gray-900 mb-1">CI/CD Pipeline Setup</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Automated testing and zero-downtime deployments using GitHub Actions — push to deploy, every time.</p>
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-4 p-5 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-yellow-500/30 hover:bg-zinc-900/70 transition-all reveal reveal-delay-4">
-                            <div class="w-10 h-10 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center flex-shrink-0 text-yellow-400">
+                        <div class="flex items-start gap-4 p-5 rounded-xl border border-gray-200 bg-white hover:border-yellow-500/30 hover:bg-gray-50 transition-all reveal reveal-delay-4">
+                            <div class="w-10 h-10 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center flex-shrink-0 text-yellow-500">
                                 <iconify-icon icon="solar:bolt-linear" width="20"></iconify-icon>
                             </div>
                             <div>
-                                <h4 class="text-sm font-semibold text-white mb-1">Laravel Performance Optimization</h4>
-                                <p class="text-sm text-zinc-500 leading-relaxed">Query optimization, Redis caching, Horizon queue tuning — making slow Laravel apps fast.</p>
+                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Laravel Performance Optimization</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Query optimization, Redis caching, Horizon queue tuning — making slow Laravel apps fast.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 5 -->
+                        <div class="flex items-start gap-4 p-5 rounded-xl border border-gray-200 bg-white hover:border-sky-500/30 hover:bg-gray-50 transition-all reveal reveal-delay-1">
+                            <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center flex-shrink-0 text-sky-500">
+                                <iconify-icon icon="solar:database-linear" width="20"></iconify-icon>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Database Architecture &amp; Scaling</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Relational schema design, MySQL/PostgreSQL indexing, query tuning, and Redis caching for heavy-traffic apps.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 6 -->
+                        <div class="flex items-start gap-4 p-5 rounded-xl border border-gray-200 bg-white hover:border-rose-500/30 hover:bg-gray-50 transition-all reveal reveal-delay-2">
+                            <div class="w-10 h-10 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center flex-shrink-0 text-rose-500">
+                                <iconify-icon icon="solar:card-linear" width="20"></iconify-icon>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Payment Gateways &amp; Integrations</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Stripe, PayPal, SSLCommerz, bKash, automated invoicing, webhooks, and third-party REST API sync.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 7 -->
+                        <div class="flex items-start gap-4 p-5 rounded-xl border border-gray-200 bg-white hover:border-indigo-500/30 hover:bg-gray-50 transition-all reveal reveal-delay-3">
+                            <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center flex-shrink-0 text-indigo-500">
+                                <iconify-icon icon="solar:layers-minimalistic-linear" width="20"></iconify-icon>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-900 mb-1">Full-Stack Web &amp; SaaS Platforms</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">End-to-end web apps with Laravel + Vue.js / Livewire, Spatie RBAC, multi-tenant architectures, and admin dashboards.</p>
                             </div>
                         </div>
 
@@ -417,23 +480,23 @@
         <!-- ─── Career Objective / About ─── -->
 
         <!-- ─── Tech Stack ─── -->
-        <section id="stack" class="py-24 border-t border-zinc-800/50 bg-zinc-900/5">
+        <section id="stack" class="py-24 border-t border-gray-200 bg-gray-50">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="mb-16 text-center lg:text-left reveal">
                     <div class="section-label">Engineering Stack</div>
-                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white mb-3">Engineering Arsenal</h2>
-                    <p class="text-zinc-400">Tools and technologies I use to build robust, production-grade architectures.</p>
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 mb-3">Engineering Arsenal</h2>
+                    <p class="text-gray-500">Tools and technologies I use to build robust, production-grade architectures.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Laravel -->
-                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/60 glow-card group reveal reveal-delay-1">
+                    <div class="p-6 rounded-2xl border border-gray-200 bg-white glow-card group reveal reveal-delay-1">
                         <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6 group-hover:bg-blue-500/15 transition-colors text-blue-400">
                             <iconify-icon icon="solar:code-square-linear" width="24"></iconify-icon>
                         </div>
-                        <h3 class="text-base font-semibold text-white mb-1">Laravel</h3>
-                        <p class="text-xs text-zinc-500 mb-5">Backend APIs & Application Architecture</p>
-                        <ul class="space-y-3 text-sm text-zinc-400">
+                        <h3 class="text-base font-semibold text-gray-900 mb-1">Laravel</h3>
+                        <p class="text-xs text-gray-400 mb-5">Backend APIs & Application Architecture</p>
+                        <ul class="space-y-3 text-sm text-gray-500">
                             <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-blue-400 text-base flex-shrink-0"></iconify-icon> Laravel 10/11 · PHP 8.x</li>
                             <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-blue-400 text-base flex-shrink-0"></iconify-icon> REST APIs · Sanctum · Passport</li>
                             <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-blue-400 text-base flex-shrink-0"></iconify-icon> Queues · Events · Scheduler</li>
@@ -442,13 +505,13 @@
                     </div>
 
                     <!-- Backend -->
-                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/60 glow-card-emerald glow-card group reveal reveal-delay-2">
+                    <div class="p-6 rounded-2xl border border-gray-200 bg-white glow-card-emerald glow-card group reveal reveal-delay-2">
                         <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 group-hover:bg-emerald-500/15 transition-colors text-emerald-400">
                             <iconify-icon icon="solar:database-linear" width="24"></iconify-icon>
                         </div>
-                        <h3 class="text-base font-semibold text-white mb-1">Database &amp; Performance</h3>
-                        <p class="text-xs text-zinc-500 mb-5">Query Optimization & Caching</p>
-                        <ul class="space-y-3 text-sm text-zinc-400">
+                        <h3 class="text-base font-semibold text-gray-900 mb-1">Database &amp; Performance</h3>
+                        <p class="text-xs text-gray-400 mb-5">Query Optimization & Caching</p>
+                        <ul class="space-y-3 text-sm text-gray-500">
                             <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-400 text-base flex-shrink-0"></iconify-icon> MySQL · PostgreSQL</li>
                             <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-400 text-base flex-shrink-0"></iconify-icon> Redis Caching &amp; Queues</li>
                             <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-400 text-base flex-shrink-0"></iconify-icon> Query Optimization &amp; Indexing</li>
@@ -457,13 +520,13 @@
                     </div>
 
                     <!-- DevOps -->
-                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/60 glow-card-purple glow-card group reveal reveal-delay-3">
+                    <div class="p-6 rounded-2xl border border-gray-200 bg-white glow-card-purple glow-card group reveal reveal-delay-3">
                         <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-6 group-hover:bg-purple-500/15 transition-colors text-purple-400">
                             <iconify-icon icon="solar:cloud-check-linear" width="24"></iconify-icon>
                         </div>
-                        <h3 class="text-base font-semibold text-white mb-1">DevOps &amp; Cloud</h3>
-                        <p class="text-xs text-zinc-500 mb-5">Deployment, CI/CD & Infrastructure</p>
-                        <ul class="space-y-3 text-sm text-zinc-400">
+                        <h3 class="text-base font-semibold text-gray-900 mb-1">DevOps &amp; Cloud</h3>
+                        <p class="text-xs text-gray-400 mb-5">Deployment, CI/CD & Infrastructure</p>
+                        <ul class="space-y-3 text-sm text-gray-500">
                             <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-purple-400 text-base flex-shrink-0"></iconify-icon> Docker &amp; Docker Compose</li>
                             <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-purple-400 text-base flex-shrink-0"></iconify-icon> GitHub Actions · CI/CD Pipelines</li>
                             <li class="flex items-center gap-2.5"><iconify-icon icon="solar:check-circle-bold" class="text-purple-400 text-base flex-shrink-0"></iconify-icon> AWS EC2 · S3 · RDS · Nginx</li>
@@ -475,48 +538,44 @@
         </section>
 
         <!-- ─── Projects ─── -->
-        <section id="projects" class="py-24 border-t border-zinc-800/50">
+        <section id="projects" class="py-24 border-t border-gray-200">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="mb-16 reveal">
                     <div class="section-label">Case Studies</div>
-                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white mb-3">Featured Work</h2>
-                    <p class="text-zinc-400 max-w-2xl">Architectural solutions designed to solve complex business problems at scale.</p>
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 mb-3">Featured Work</h2>
+                    <p class="text-gray-500 max-w-2xl">Architectural solutions designed to solve complex business problems at scale.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                     <!-- Project 1 — BdTender -->
-                    <div class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/20 overflow-hidden hover:border-blue-500/30 glow-card transition-all reveal reveal-delay-1">
-                        <div class="project-preview bg-zinc-950">
+                    <div class="group flex flex-col rounded-2xl border border-gray-200 bg-white overflow-hidden hover:border-blue-500/40 glow-card transition-all reveal reveal-delay-1 shadow-sm hover:shadow-md">
+                        <div class="project-preview bg-blue-50/80 border-b border-gray-100">
                             <img src="images/projects/project-1.jpg" alt="BdTender screenshot"
-                                 class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500"
+                                 class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                                  onerror="this.style.display='none'">
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-blue-950/10 to-transparent"></div>
-                            <div class="relative z-10 flex flex-col items-center gap-3 opacity-60 group-hover:opacity-90 transition-opacity duration-500">
+                            <div class="relative z-10 flex flex-col items-center gap-3">
                                 <div class="flex items-center gap-3">
-                                    <iconify-icon icon="solar:document-text-linear" class="text-4xl text-blue-400/60"></iconify-icon>
-                                    <div class="flex flex-col gap-1.5">
-                                        <div class="w-16 h-1.5 bg-blue-400/40 rounded"></div>
-                                        <div class="w-12 h-1.5 bg-blue-400/25 rounded"></div>
-                                        <div class="w-14 h-1.5 bg-blue-400/35 rounded"></div>
+                                    <div class="w-12 h-12 rounded-xl bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-600">
+                                        <iconify-icon icon="solar:document-text-bold" class="text-2xl"></iconify-icon>
                                     </div>
                                 </div>
                             </div>
-                            <div class="project-number">01</div>
+                            <div class="project-number text-blue-900/10">01</div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-300 rounded border border-blue-500/20">Laravel</span>
-                                <span class="px-2 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-300 rounded border border-blue-500/20">Ajax</span>
-                                <span class="px-2 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-300 rounded border border-blue-500/20">MySQL</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-600 rounded border border-blue-200/60">Laravel</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-600 rounded border border-blue-200/60">Ajax</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-blue-50 text-blue-600 rounded border border-blue-200/60">MySQL</span>
                             </div>
-                            <h3 class="text-xl font-semibold text-white mb-3">BdTender — Tender Aggregation Portal</h3>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3">BdTender — Tender Aggregation Portal</h3>
                             <div class="mb-6 flex-grow">
-                                <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">The Project</p>
-                                <p class="text-sm text-zinc-400 leading-relaxed">Bangladesh's largest tender notice platform — aggregating government &amp; private procurement notices from newspapers and e-GP. Built with Laravel backend, real-time Ajax search, and SMS/email alert subscriptions for businesses.</p>
+                                <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">The Project</p>
+                                <p class="text-sm text-gray-500 leading-relaxed">Bangladesh's largest tender notice platform — aggregating government &amp; private procurement notices from newspapers and e-GP. Built with Laravel backend, real-time Ajax search, and SMS/email alert subscriptions for businesses.</p>
                             </div>
-                            <div class="flex items-center gap-4 pt-4 border-t border-zinc-800">
-                                <a href="https://bdtender.com/" target="_blank" rel="noopener" class="text-sm font-medium text-white hover:text-blue-400 flex items-center gap-1.5 transition-colors">
+                            <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                                <a href="https://bdtender.com/" target="_blank" rel="noopener" class="text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1.5 transition-colors">
                                     Live Site <iconify-icon icon="solar:global-linear"></iconify-icon>
                                 </a>
                             </div>
@@ -524,42 +583,31 @@
                     </div>
 
                     <!-- Project 2 — Employee Management + Scheduling -->
-                    <div class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/20 overflow-hidden hover:border-emerald-500/30 glow-card-emerald glow-card transition-all reveal reveal-delay-2">
-                        <div class="project-preview bg-zinc-950">
+                    <div class="group flex flex-col rounded-2xl border border-gray-200 bg-white overflow-hidden hover:border-emerald-500/40 glow-card-emerald glow-card transition-all reveal reveal-delay-2 shadow-sm hover:shadow-md">
+                        <div class="project-preview bg-emerald-50/80 border-b border-gray-100">
                             <img src="images/projects/project-2.jpg" alt="Employee Management System screenshot"
-                                 class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500"
+                                 class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                                  onerror="this.style.display='none'">
-                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/30 via-emerald-950/10 to-transparent"></div>
-                            <div class="relative z-10 flex flex-col items-center gap-2 opacity-60 group-hover:opacity-90 transition-opacity duration-500">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded border border-emerald-500/40 bg-emerald-500/10 flex items-center justify-center">
-                                        <iconify-icon icon="solar:users-group-rounded-linear" class="text-emerald-400 text-lg"></iconify-icon>
-                                    </div>
-                                    <div class="flex gap-1">
-                                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400/60"></div>
-                                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400/40"></div>
-                                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400/60"></div>
-                                    </div>
-                                    <div class="w-8 h-8 rounded border border-emerald-500/40 bg-emerald-500/10 flex items-center justify-center">
-                                        <iconify-icon icon="solar:calendar-linear" class="text-emerald-400 text-lg"></iconify-icon>
-                                    </div>
+                            <div class="relative z-10 flex flex-col items-center gap-2">
+                                <div class="w-12 h-12 rounded-xl bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-600">
+                                    <iconify-icon icon="solar:users-group-rounded-bold" class="text-2xl"></iconify-icon>
                                 </div>
                             </div>
-                            <div class="project-number">02</div>
+                            <div class="project-number text-emerald-900/10">02</div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Laravel</span>
-                                <span class="px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Vue.js</span>
-                                <span class="px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Livewire</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-emerald-50 text-emerald-600 rounded border border-emerald-200/60">Laravel</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-emerald-50 text-emerald-600 rounded border border-emerald-200/60">Vue.js</span>
+                                <span class="px-2 py-0.5 text-xs font-medium bg-emerald-50 text-emerald-600 rounded border border-emerald-200/60">Livewire</span>
                             </div>
-                            <h3 class="text-xl font-semibold text-white mb-3">Employee Management &amp; Scheduling System</h3>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-3">Employee Management &amp; Scheduling System</h3>
                             <div class="mb-6 flex-grow">
-                                <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">The Project</p>
-                                <p class="text-sm text-zinc-400 leading-relaxed">Europe-based workforce management system built at Dingi Dev — shift-wise scheduling with timezone support, leave &amp; vacation tracking, overtime &amp; compensation calculation engine, and country-specific holiday management.</p>
+                                <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">The Project</p>
+                                <p class="text-sm text-gray-500 leading-relaxed">Europe-based workforce management system built at Dingi Dev — shift-wise scheduling with timezone support, leave &amp; vacation tracking, overtime &amp; compensation calculation engine, and country-specific holiday management.</p>
                             </div>
-                            <div class="flex items-center gap-4 pt-4 border-t border-zinc-800">
-                                <span class="text-sm font-medium text-zinc-500 flex items-center gap-1.5">
+                            <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                                <span class="text-sm font-medium text-gray-400 flex items-center gap-1.5">
                                     <iconify-icon icon="solar:lock-linear"></iconify-icon> Private — Dingi Dev
                                 </span>
                             </div>
@@ -567,38 +615,32 @@
                     </div>
 
                     <!-- Project 3 — FinTech -->
-                    <div class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/20 overflow-hidden hover:border-purple-500/30 glow-card-purple glow-card transition-all md:col-span-2 reveal reveal-delay-3">
+                    <div class="group flex flex-col rounded-2xl border border-gray-200 bg-white overflow-hidden hover:border-purple-500/40 glow-card-purple glow-card transition-all md:col-span-2 reveal reveal-delay-3 shadow-sm hover:shadow-md">
                         <div class="flex flex-col md:flex-row">
-                            <div class="project-preview md:w-2/5 md:h-auto bg-zinc-950" style="min-height:160px">
+                            <div class="project-preview md:w-2/5 md:h-auto bg-purple-50/80 border-b md:border-b-0 md:border-r border-gray-100" style="min-height:160px">
                                 <img src="images/projects/project-3.jpg" alt="FinTech Payment Gateway screenshot"
-                                     class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500"
+                                     class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                                      onerror="this.style.display='none'">
-                                <div class="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-purple-950/10 to-transparent"></div>
-                                <div class="relative z-10 flex flex-col items-center gap-3 opacity-60 group-hover:opacity-90 transition-opacity duration-500">
-                                    <div class="w-16 h-10 rounded-lg border border-purple-500/30 bg-purple-500/10 flex items-center justify-center">
-                                        <iconify-icon icon="solar:card-linear" class="text-purple-300 text-2xl"></iconify-icon>
-                                    </div>
-                                    <div class="flex gap-2">
-                                        <div class="w-2 h-2 rounded-full bg-purple-400/70"></div>
-                                        <div class="w-2 h-2 rounded-full bg-purple-400/50"></div>
-                                        <div class="w-2 h-2 rounded-full bg-purple-400/70"></div>
+                                <div class="relative z-10 flex flex-col items-center gap-3">
+                                    <div class="w-12 h-12 rounded-xl border border-purple-200 bg-purple-100 flex items-center justify-center text-purple-600">
+                                        <iconify-icon icon="solar:card-bold" class="text-2xl"></iconify-icon>
                                     </div>
                                 </div>
-                                <div class="project-number">03</div>
+                                <div class="project-number text-purple-900/10">03</div>
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
                                 <div class="flex flex-wrap gap-1.5 mb-4">
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-500/10 text-purple-300 rounded border border-purple-500/20">Laravel</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-500/10 text-purple-300 rounded border border-purple-500/20">REST API</span>
-                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-500/10 text-purple-300 rounded border border-purple-500/20">Multi-tenant</span>
+                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-600 rounded border border-purple-200/60">Laravel</span>
+                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-600 rounded border border-purple-200/60">REST API</span>
+                                    <span class="px-2 py-0.5 text-xs font-medium bg-purple-50 text-purple-600 rounded border border-purple-200/60">Multi-tenant</span>
                                 </div>
-                                <h3 class="text-xl font-semibold text-white mb-3">Multi-Tenant SaaS Platform</h3>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-3">Multi-Tenant SaaS Platform</h3>
                                 <div class="mb-6 flex-grow">
-                                    <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">The Challenge</p>
-                                    <p class="text-sm text-zinc-400 leading-relaxed">Built a multi-tenant Laravel SaaS from scratch with per-tenant database isolation, role-based access control via Spatie, subscription billing integration, and a full REST API consumed by a Vue.js frontend.</p>
+                                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">The Challenge</p>
+                                    <p class="text-sm text-gray-500 leading-relaxed">Built a multi-tenant Laravel SaaS from scratch with per-tenant database isolation, role-based access control via Spatie, subscription billing integration, and a full REST API consumed by a Vue.js frontend.</p>
                                 </div>
-                                <div class="flex items-center gap-4 pt-4 border-t border-zinc-800">
-                                    <span class="text-sm font-medium text-zinc-500 flex items-center gap-1.5">
+                                <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                                    <span class="text-sm font-medium text-gray-400 flex items-center gap-1.5">
                                         <iconify-icon icon="solar:lock-linear"></iconify-icon> Private Repository
                                     </span>
                                 </div>
@@ -611,126 +653,126 @@
                 <!-- ── Other Projects ── -->
                 <div class="mt-14 reveal">
                     <div class="flex items-center gap-3 mb-6">
-                        <h3 class="text-base font-semibold text-zinc-300">Other Websites I've Built</h3>
-                        <div class="flex-1 h-px bg-zinc-800"></div>
+                        <h3 class="text-base font-semibold text-gray-600">Other Websites I've Built</h3>
+                        <div class="flex-1 h-px bg-gray-200"></div>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
                         <!-- cbt.beautifulbangladesh.gov.bd -->
                         <a href="https://cbt.beautifulbangladesh.gov.bd" target="_blank" rel="noopener"
-                           class="group flex flex-col gap-3 p-4 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-600 hover:bg-zinc-900/60 transition-all reveal reveal-delay-1">
+                           class="group flex flex-col gap-3 p-4 rounded-xl border border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 transition-all reveal reveal-delay-1">
                             <div class="flex items-start justify-between">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 rounded">Gov Portal</span>
-                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-zinc-600 group-hover:text-white transition-colors text-base"></iconify-icon>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-md">Gov Portal</span>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-gray-400 group-hover:text-gray-700 transition-colors text-base"></iconify-icon>
                             </div>
                             <div>
-                                <div class="text-sm font-semibold text-white mb-1">Beautiful Bangladesh CBT</div>
-                                <p class="text-xs text-zinc-500 leading-relaxed">Bangladesh Tourism Board — Community-Based Tourism portal promoting sustainable local tourism initiatives.</p>
+                                <div class="text-sm font-semibold text-gray-900 mb-1">Beautiful Bangladesh CBT</div>
+                                <p class="text-xs text-gray-500 leading-relaxed">Bangladesh Tourism Board — Community-Based Tourism portal promoting sustainable local tourism initiatives.</p>
                             </div>
                             <div class="flex flex-wrap gap-1.5 mt-auto">
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">Laravel</span>
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">Government</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">Laravel</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">Government</span>
                             </div>
                         </a>
 
                         <!-- bdtender.com -->
                         <a href="https://bdtender.com/" target="_blank" rel="noopener"
-                           class="group flex flex-col gap-3 p-4 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-600 hover:bg-zinc-900/60 transition-all reveal reveal-delay-2">
+                           class="group flex flex-col gap-3 p-4 rounded-xl border border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 transition-all reveal reveal-delay-2">
                             <div class="flex items-start justify-between">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-300 border border-blue-500/20 rounded">Tender Portal</span>
-                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-zinc-600 group-hover:text-white transition-colors text-base"></iconify-icon>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 rounded-md">Tender Portal</span>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-gray-400 group-hover:text-gray-700 transition-colors text-base"></iconify-icon>
                             </div>
                             <div>
-                                <div class="text-sm font-semibold text-white mb-1">BdTender</div>
-                                <p class="text-xs text-zinc-500 leading-relaxed">Bangladesh's largest tender aggregation platform — government &amp; private procurement notices with SMS/email alerts.</p>
+                                <div class="text-sm font-semibold text-gray-900 mb-1">BdTender</div>
+                                <p class="text-xs text-gray-500 leading-relaxed">Bangladesh's largest tender aggregation platform — government &amp; private procurement notices with SMS/email alerts.</p>
                             </div>
                             <div class="flex flex-wrap gap-1.5 mt-auto">
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">Laravel</span>
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">Ajax</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">Laravel</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">Ajax</span>
                             </div>
                         </a>
 
                         <!-- sudoksho.com -->
                         <a href="https://sudoksho.com/" target="_blank" rel="noopener"
-                           class="group flex flex-col gap-3 p-4 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-600 hover:bg-zinc-900/60 transition-all reveal reveal-delay-3">
+                           class="group flex flex-col gap-3 p-4 rounded-xl border border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 transition-all reveal reveal-delay-3">
                             <div class="flex items-start justify-between">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-purple-500/10 text-purple-300 border border-purple-500/20 rounded">E-Learning</span>
-                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-zinc-600 group-hover:text-white transition-colors text-base"></iconify-icon>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200 rounded-md">E-Learning</span>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-gray-400 group-hover:text-gray-700 transition-colors text-base"></iconify-icon>
                             </div>
                             <div>
-                                <div class="text-sm font-semibold text-white mb-1">Sudoksho</div>
-                                <p class="text-xs text-zinc-500 leading-relaxed">Professional certification &amp; skills development platform offering finance, language, and freelancing courses.</p>
+                                <div class="text-sm font-semibold text-gray-900 mb-1">Sudoksho</div>
+                                <p class="text-xs text-gray-500 leading-relaxed">Professional certification &amp; skills development platform offering finance, language, and freelancing courses.</p>
                             </div>
                             <div class="flex flex-wrap gap-1.5 mt-auto">
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">Laravel</span>
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">LMS</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">Laravel</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">LMS</span>
                             </div>
                         </a>
 
                         <!-- wholesalegadgets.com.bd -->
                         <a href="https://www.wholesalegadgets.com.bd/" target="_blank" rel="noopener"
-                           class="group flex flex-col gap-3 p-4 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-600 hover:bg-zinc-900/60 transition-all reveal reveal-delay-1">
+                           class="group flex flex-col gap-3 p-4 rounded-xl border border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 transition-all reveal reveal-delay-1">
                             <div class="flex items-start justify-between">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 rounded">E-Commerce</span>
-                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-zinc-600 group-hover:text-white transition-colors text-base"></iconify-icon>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200 rounded-md">E-Commerce</span>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-gray-400 group-hover:text-gray-700 transition-colors text-base"></iconify-icon>
                             </div>
                             <div>
-                                <div class="text-sm font-semibold text-white mb-1">Wholesale Gadgets BD</div>
-                                <p class="text-xs text-zinc-500 leading-relaxed">Online electronics &amp; mobile accessories retailer in Bangladesh selling at wholesale and retail prices.</p>
+                                <div class="text-sm font-semibold text-gray-900 mb-1">Wholesale Gadgets BD</div>
+                                <p class="text-xs text-gray-500 leading-relaxed">Online electronics &amp; mobile accessories retailer in Bangladesh selling at wholesale and retail prices.</p>
                             </div>
                             <div class="flex flex-wrap gap-1.5 mt-auto">
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">Laravel</span>
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">E-Commerce</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">Laravel</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">E-Commerce</span>
                             </div>
                         </a>
 
                         <!-- insideoutbd.com -->
                         <a href="https://insideoutbd.com/" target="_blank" rel="noopener"
-                           class="group flex flex-col gap-3 p-4 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-600 hover:bg-zinc-900/60 transition-all reveal reveal-delay-2">
+                           class="group flex flex-col gap-3 p-4 rounded-xl border border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 transition-all reveal reveal-delay-2">
                             <div class="flex items-start justify-between">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-zinc-700 text-zinc-300 border border-zinc-600 rounded">Business</span>
-                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-zinc-600 group-hover:text-white transition-colors text-base"></iconify-icon>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold bg-gray-100 text-gray-700 border border-gray-200 rounded-md">Business</span>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-gray-400 group-hover:text-gray-700 transition-colors text-base"></iconify-icon>
                             </div>
                             <div>
-                                <div class="text-sm font-semibold text-white mb-1">Inside Out BD</div>
-                                <p class="text-xs text-zinc-500 leading-relaxed">Business website built with custom Laravel backend and dynamic content management.</p>
+                                <div class="text-sm font-semibold text-gray-900 mb-1">Inside Out BD</div>
+                                <p class="text-xs text-gray-500 leading-relaxed">Business website built with custom Laravel backend and dynamic content management.</p>
                             </div>
                             <div class="flex flex-wrap gap-1.5 mt-auto">
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">Laravel</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">Laravel</span>
                             </div>
                         </a>
 
                         <!-- studiodxine.com -->
                         <a href="https://studiodxine.com/" target="_blank" rel="noopener"
-                           class="group flex flex-col gap-3 p-4 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-600 hover:bg-zinc-900/60 transition-all reveal reveal-delay-3">
+                           class="group flex flex-col gap-3 p-4 rounded-xl border border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 transition-all reveal reveal-delay-3">
                             <div class="flex items-start justify-between">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-pink-500/10 text-pink-300 border border-pink-500/20 rounded">Design Studio</span>
-                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-zinc-600 group-hover:text-white transition-colors text-base"></iconify-icon>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold bg-pink-50 text-pink-700 border border-pink-200 rounded-md">Design Studio</span>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-gray-400 group-hover:text-gray-700 transition-colors text-base"></iconify-icon>
                             </div>
                             <div>
-                                <div class="text-sm font-semibold text-white mb-1">Studio D'xine</div>
-                                <p class="text-xs text-zinc-500 leading-relaxed">Portfolio site for a Bangladeshi architecture &amp; interior design studio showcasing residential and commercial projects.</p>
+                                <div class="text-sm font-semibold text-gray-900 mb-1">Studio D'xine</div>
+                                <p class="text-xs text-gray-500 leading-relaxed">Portfolio site for a Bangladeshi architecture &amp; interior design studio showcasing residential and commercial projects.</p>
                             </div>
                             <div class="flex flex-wrap gap-1.5 mt-auto">
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">Laravel</span>
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">Portfolio</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">Laravel</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">Portfolio</span>
                             </div>
                         </a>
 
                         <!-- autotalab.com -->
                         <a href="https://autotalab.com/" target="_blank" rel="noopener"
-                           class="group flex flex-col gap-3 p-4 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:border-zinc-600 hover:bg-zinc-900/60 transition-all reveal reveal-delay-1 sm:col-span-2 lg:col-span-1">
+                           class="group flex flex-col gap-3 p-4 rounded-xl border border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 transition-all reveal reveal-delay-1 sm:col-span-2 lg:col-span-1">
                             <div class="flex items-start justify-between">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-orange-500/10 text-orange-300 border border-orange-500/20 rounded">On-Demand Service</span>
-                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-zinc-600 group-hover:text-white transition-colors text-base"></iconify-icon>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold bg-orange-50 text-orange-700 border border-orange-200 rounded-md">On-Demand Service</span>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-gray-400 group-hover:text-gray-700 transition-colors text-base"></iconify-icon>
                             </div>
                             <div>
-                                <div class="text-sm font-semibold text-white mb-1">AutoTalab</div>
-                                <p class="text-xs text-zinc-500 leading-relaxed">Kuwait-based on-demand car repair &amp; roadside assistance platform — technicians dispatched to customer location.</p>
+                                <div class="text-sm font-semibold text-gray-900 mb-1">AutoTalab</div>
+                                <p class="text-xs text-gray-500 leading-relaxed">Kuwait-based on-demand car repair &amp; roadside assistance platform — technicians dispatched to customer location.</p>
                             </div>
                             <div class="flex flex-wrap gap-1.5 mt-auto">
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">Laravel</span>
-                                <span class="px-1.5 py-0.5 text-xs bg-zinc-800 text-zinc-500 rounded">Kuwait</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">Laravel</span>
+                                <span class="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 font-medium rounded border border-gray-200/60">Kuwait</span>
                             </div>
                         </a>
 
@@ -739,32 +781,32 @@
 
             </div>
         </section>
-        <section id="about" class="py-24 border-t border-zinc-800/50">
+        <section id="about" class="py-24 border-t border-gray-200">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
                     <!-- Left: about text -->
                     <div class="space-y-6 reveal">
                         <!-- Profile photo — add images/profile/avatar.jpg to show it -->
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden border border-zinc-700 bg-zinc-900 flex items-center justify-center">
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 flex items-center justify-center">
                             <img src="images/profile/avatar.jpg" alt="Shah Md. Arafatul Rahman"
                                  class="w-full h-full object-cover"
                                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                            <span style="display:none" class="w-full h-full items-center justify-center text-2xl font-bold text-zinc-500">A</span>
+                            <span style="display:none" class="w-full h-full items-center justify-center text-2xl font-bold text-gray-400">A</span>
                         </div>
                         <div class="section-label">About Me</div>
-                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white">Passionate about building things that scale.</h2>
-                        <p class="text-zinc-400 leading-relaxed">
-                            I'm <span class="text-white font-medium">Shah Md. Arafatul Rahman</span>, a Laravel Developer based in <span class="text-white font-medium">Dhaka, Bangladesh</span> with around 5 years of professional experience. I focus on building clean, maintainable backend systems and full-stack web applications.
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Passionate about building things that scale.</h2>
+                        <p class="text-gray-500 leading-relaxed">
+                            I'm <span class="text-gray-800 font-medium">Shah Md. Arafatul Rahman</span>, a Laravel Developer based in <span class="text-gray-800 font-medium">Dhaka, Bangladesh</span> with around 5 years of professional experience. I focus on building clean, maintainable backend systems and full-stack web applications.
                         </p>
-                        <p class="text-zinc-400 leading-relaxed">
-                            I'm actively seeking <span class="text-white font-medium">remote, freelance, or part-time opportunities</span> where I can contribute backend expertise, collaborate with global teams, and continue growing as an engineer.
+                        <p class="text-gray-500 leading-relaxed">
+                            I'm actively seeking <span class="text-gray-800 font-medium">remote, freelance, or part-time opportunities</span> where I can contribute backend expertise, collaborate with global teams, and continue growing as an engineer.
                         </p>
                         <div class="flex flex-wrap gap-3 pt-2">
-                            <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-black bg-white rounded-lg hover:bg-zinc-100 transition-colors">
+                            <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors">
                                 Hire Me <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
                             </a>
-                            <a href="mailto:arafatul985@gmail.com" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-zinc-300 border border-zinc-700 rounded-lg hover:bg-zinc-900 hover:border-zinc-500 transition-all">
+                            <a href="mailto:arafatul985@gmail.com" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all">
                                 <iconify-icon icon="solar:letter-linear" class="text-blue-400"></iconify-icon>
                                 arafatul985@gmail.com
                             </a>
@@ -774,53 +816,53 @@
                     <!-- Right: info cards -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal">
 
-                        <div class="p-5 rounded-2xl border border-zinc-800 bg-zinc-950/60 space-y-1">
-                            <div class="text-zinc-500 text-xs font-semibold uppercase tracking-wider mb-3">Location</div>
-                            <div class="flex items-center gap-2 text-white font-medium">
+                        <div class="p-5 rounded-2xl border border-gray-200 bg-white space-y-1">
+                            <div class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">Location</div>
+                            <div class="flex items-center gap-2 text-gray-900 font-medium">
                                 <iconify-icon icon="solar:map-point-bold" class="text-emerald-400 text-lg"></iconify-icon>
                                 Dhaka, Bangladesh
                             </div>
-                            <p class="text-xs text-zinc-500">UTC+6 · Available globally</p>
+                            <p class="text-xs text-gray-400">UTC+6 · Available globally</p>
                         </div>
 
-                        <div class="p-5 rounded-2xl border border-zinc-800 bg-zinc-950/60 space-y-1">
-                            <div class="text-zinc-500 text-xs font-semibold uppercase tracking-wider mb-3">Experience</div>
-                            <div class="flex items-center gap-2 text-white font-medium">
+                        <div class="p-5 rounded-2xl border border-gray-200 bg-white space-y-1">
+                            <div class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">Experience</div>
+                            <div class="flex items-center gap-2 text-gray-900 font-medium">
                                 <iconify-icon icon="solar:diploma-bold" class="text-blue-400 text-lg"></iconify-icon>
                                 ~5 Years
                             </div>
-                            <p class="text-xs text-zinc-500">Laravel · PHP · Full-Stack</p>
+                            <p class="text-xs text-gray-400">Laravel · PHP · Full-Stack</p>
                         </div>
 
-                        <div class="p-5 rounded-2xl border border-zinc-800 bg-zinc-950/60 space-y-1">
-                            <div class="text-zinc-500 text-xs font-semibold uppercase tracking-wider mb-3">Availability</div>
-                            <div class="flex items-center gap-2 text-white font-medium">
+                        <div class="p-5 rounded-2xl border border-gray-200 bg-white space-y-1">
+                            <div class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">Availability</div>
+                            <div class="flex items-center gap-2 text-gray-900 font-medium">
                                 <iconify-icon icon="solar:clock-circle-bold" class="text-purple-400 text-lg"></iconify-icon>
                                 Open to Work
                             </div>
-                            <p class="text-xs text-zinc-500">Remote · Freelance · Part-time</p>
+                            <p class="text-xs text-gray-400">Remote · Freelance · Part-time</p>
                         </div>
 
                         <a href="https://wa.me/8801738020985" target="_blank" rel="noopener"
-                           class="p-5 rounded-2xl border border-zinc-800 bg-zinc-950/60 hover:border-green-600/50 hover:bg-green-950/20 transition-all space-y-1 block group">
-                            <div class="text-zinc-500 text-xs font-semibold uppercase tracking-wider mb-3 group-hover:text-green-400 transition-colors">WhatsApp</div>
-                            <div class="flex items-center gap-2 text-white font-medium text-sm">
+                           class="p-5 rounded-2xl border border-gray-200 bg-white hover:border-green-500 hover:bg-green-50/60 transition-all space-y-1 block group shadow-sm hover:shadow-md">
+                            <div class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3 group-hover:text-green-600 transition-colors">WhatsApp</div>
+                            <div class="flex items-center gap-2 text-gray-900 font-medium text-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#25D366" class="flex-shrink-0">
                                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                                 </svg>
                                 +880 1738020985
                             </div>
-                            <p class="text-xs text-zinc-500">Tap to chat on WhatsApp</p>
+                            <p class="text-xs text-gray-400">Tap to chat on WhatsApp</p>
                         </a>
 
                         <a href="mailto:arafatul985@gmail.com"
-                           class="p-5 rounded-2xl border border-zinc-800 bg-zinc-950/60 hover:border-blue-600/50 hover:bg-blue-950/20 transition-all space-y-1 block group">
-                            <div class="text-zinc-500 text-xs font-semibold uppercase tracking-wider mb-3 group-hover:text-blue-400 transition-colors">Email</div>
-                            <div class="flex items-center gap-2 text-white font-medium text-sm break-all">
-                                <iconify-icon icon="solar:letter-bold" class="text-blue-400 text-lg flex-shrink-0"></iconify-icon>
+                           class="p-5 rounded-2xl border border-gray-200 bg-white hover:border-blue-500 hover:bg-blue-50/60 transition-all space-y-1 block group shadow-sm hover:shadow-md">
+                            <div class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3 group-hover:text-blue-600 transition-colors">Email</div>
+                            <div class="flex items-center gap-2 text-gray-900 font-medium text-sm break-all">
+                                <iconify-icon icon="solar:letter-bold" class="text-blue-500 text-lg flex-shrink-0"></iconify-icon>
                                 arafatul985@gmail.com
                             </div>
-                            <p class="text-xs text-zinc-500">Tap to send email</p>
+                            <p class="text-xs text-gray-400">Tap to send email</p>
                         </a>
 
                     </div>
@@ -828,15 +870,15 @@
             </div>
         </section>
         <!-- ─── Blog / Case Studies ─── -->
-        <section id="blog" class="py-24 border-t border-zinc-800/50">
+        <section id="blog" class="py-24 border-t border-gray-200">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="flex items-end justify-between mb-16 reveal">
                     <div>
                         <div class="section-label">Writing</div>
-                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">Case Studies &amp; Blog</h2>
-                        <p class="text-zinc-400">Real projects, real problems, and how I solved them.</p>
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 mb-2">Case Studies &amp; Blog</h2>
+                        <p class="text-gray-500">Real projects, real problems, and how I solved them.</p>
                     </div>
-                    <a href="blog/" class="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors">
+                    <a href="blog/" class="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
                         All posts <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
                     </a>
                 </div>
@@ -844,64 +886,64 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                     <!-- Post 1 -->
-                    <a href="blog/laravel-redis-queue.html" class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 hover:bg-zinc-900/50 transition-all overflow-hidden reveal reveal-delay-1">
+                    <a href="blog/laravel-redis-queue.html" class="group flex flex-col rounded-2xl border border-gray-200 bg-white hover:border-blue-400 hover:shadow-md transition-all overflow-hidden reveal reveal-delay-1">
                         <div class="h-2 bg-gradient-to-r from-blue-500 to-blue-400"></div>
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex items-center gap-2 mb-4">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-300 rounded border border-blue-500/20">Laravel</span>
-                                <span class="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded">Redis</span>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold bg-blue-50 text-blue-700 rounded-md border border-blue-200">Laravel</span>
+                                <span class="px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-700 rounded-md border border-gray-200/60">Redis</span>
                             </div>
-                            <h3 class="text-base font-semibold text-white mb-3 group-hover:text-blue-300 transition-colors leading-snug">
+                            <h3 class="text-base font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors leading-snug">
                                 How I Cut Report Generation Time by 85% with Laravel Queues &amp; Redis
                             </h3>
-                            <p class="text-sm text-zinc-500 leading-relaxed flex-grow">
+                            <p class="text-sm text-gray-500 leading-relaxed flex-grow">
                                 A deep-dive into how I redesigned a slow analytics pipeline for an e-commerce platform using Laravel's queue system backed by Redis.
                             </p>
-                            <div class="flex items-center justify-between mt-5 pt-4 border-t border-zinc-800/60 text-xs text-zinc-600">
+                            <div class="flex items-center justify-between mt-5 pt-4 border-t border-gray-100 text-xs text-gray-400">
                                 <span>5 min read</span>
-                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-base group-hover:text-blue-400 transition-colors"></iconify-icon>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-base group-hover:text-blue-600 transition-colors"></iconify-icon>
                             </div>
                         </div>
                     </a>
 
                     <!-- Post 2 -->
-                    <a href="blog/docker-laravel-setup.html" class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 hover:bg-zinc-900/50 transition-all overflow-hidden reveal reveal-delay-2">
+                    <a href="blog/docker-laravel-setup.html" class="group flex flex-col rounded-2xl border border-gray-200 bg-white hover:border-emerald-400 hover:shadow-md transition-all overflow-hidden reveal reveal-delay-2">
                         <div class="h-2 bg-gradient-to-r from-emerald-500 to-emerald-400"></div>
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex items-center gap-2 mb-4">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-300 rounded border border-emerald-500/20">Docker</span>
-                                <span class="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded">DevOps</span>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold bg-emerald-50 text-emerald-700 rounded-md border border-emerald-200">Docker</span>
+                                <span class="px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-700 rounded-md border border-gray-200/60">DevOps</span>
                             </div>
-                            <h3 class="text-base font-semibold text-white mb-3 group-hover:text-emerald-300 transition-colors leading-snug">
+                            <h3 class="text-base font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors leading-snug">
                                 Zero-Config Docker Setup for Laravel + MySQL + Redis (PHP 8)
                             </h3>
-                            <p class="text-sm text-zinc-500 leading-relaxed flex-grow">
+                            <p class="text-sm text-gray-500 leading-relaxed flex-grow">
                                 A walkthrough of my open-source Docker Compose template that I use across all client projects — from local dev to production-ready deployment.
                             </p>
-                            <div class="flex items-center justify-between mt-5 pt-4 border-t border-zinc-800/60 text-xs text-zinc-600">
+                            <div class="flex items-center justify-between mt-5 pt-4 border-t border-gray-100 text-xs text-gray-400">
                                 <span>7 min read</span>
-                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-base group-hover:text-emerald-400 transition-colors"></iconify-icon>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-base group-hover:text-emerald-600 transition-colors"></iconify-icon>
                             </div>
                         </div>
                     </a>
 
                     <!-- Post 3 -->
-                    <a href="blog/laravel-api-best-practices.html" class="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 hover:bg-zinc-900/50 transition-all overflow-hidden reveal reveal-delay-3">
+                    <a href="blog/laravel-api-best-practices.html" class="group flex flex-col rounded-2xl border border-gray-200 bg-white hover:border-purple-400 hover:shadow-md transition-all overflow-hidden reveal reveal-delay-3">
                         <div class="h-2 bg-gradient-to-r from-purple-500 to-purple-400"></div>
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex items-center gap-2 mb-4">
-                                <span class="px-2 py-0.5 text-xs font-medium bg-purple-500/10 text-purple-300 rounded border border-purple-500/20">Laravel</span>
-                                <span class="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded">API</span>
+                                <span class="px-2.5 py-0.5 text-xs font-semibold bg-purple-50 text-purple-700 rounded-md border border-purple-200">Laravel</span>
+                                <span class="px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-700 rounded-md border border-gray-200/60">API</span>
                             </div>
-                            <h3 class="text-base font-semibold text-white mb-3 group-hover:text-purple-300 transition-colors leading-snug">
+                            <h3 class="text-base font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors leading-snug">
                                 Laravel REST API Best Practices: Structure, Auth &amp; Versioning
                             </h3>
-                            <p class="text-sm text-zinc-500 leading-relaxed flex-grow">
+                            <p class="text-sm text-gray-500 leading-relaxed flex-grow">
                                 How I structure production Laravel APIs — from Sanctum authentication and resource transformers to API versioning and consistent error responses.
                             </p>
-                            <div class="flex items-center justify-between mt-5 pt-4 border-t border-zinc-800/60 text-xs text-zinc-600">
+                            <div class="flex items-center justify-between mt-5 pt-4 border-t border-gray-100 text-xs text-gray-400">
                                 <span>8 min read</span>
-                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-base group-hover:text-purple-400 transition-colors"></iconify-icon>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-base group-hover:text-purple-600 transition-colors"></iconify-icon>
                             </div>
                         </div>
                     </a>
@@ -910,7 +952,7 @@
 
                 <!-- Mobile: all posts link -->
                 <div class="mt-8 text-center sm:hidden reveal">
-                    <a href="blog/" class="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors">
+                    <a href="blog/" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
                         All posts <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
                     </a>
                 </div>
@@ -918,46 +960,46 @@
         </section>
 
         <!-- ─── Testimonials ─── -->
-        <section class="py-24 border-t border-zinc-800/50">
+        <section class="py-24 border-t border-gray-200">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="mb-12 text-center reveal">
                     <div class="section-label justify-center">Social Proof</div>
-                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white">Endorsements</h2>
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Endorsements</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 transition-colors reveal reveal-delay-1">
+                    <div class="p-6 rounded-2xl border border-gray-200 bg-white hover:border-gray-300 transition-colors reveal reveal-delay-1">
                         <iconify-icon icon="solar:quote-right-bold" class="text-2xl text-blue-500/30 mb-4 block"></iconify-icon>
-                        <p class="text-sm text-zinc-300 leading-relaxed mb-6">"Arafatul completely transformed our backend infrastructure. His deep understanding of Laravel and Docker reduced our server costs by 30% while significantly improving performance."</p>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-6">"Arafatul completely transformed our backend infrastructure. His deep understanding of Laravel and Docker reduced our server costs by 30% while significantly improving performance."</p>
                         <div class="flex items-center gap-3">
                             <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">SM</div>
                             <div>
-                                <div class="text-sm font-semibold text-white">Sarah Miller</div>
-                                <div class="text-xs text-zinc-500">CTO, E-Commerce Pro</div>
+                                <div class="text-sm font-semibold text-gray-900">Sarah Miller</div>
+                                <div class="text-xs text-gray-400">CTO, E-Commerce Pro</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 transition-colors reveal reveal-delay-2">
+                    <div class="p-6 rounded-2xl border border-gray-200 bg-white hover:border-gray-300 transition-colors reveal reveal-delay-2">
                         <iconify-icon icon="solar:quote-right-bold" class="text-2xl text-emerald-500/30 mb-4 block"></iconify-icon>
-                        <p class="text-sm text-zinc-300 leading-relaxed mb-6">"An exceptional problem solver. Arafatul doesn't just write code — he architects solutions. His CI/CD implementation was a game-changer for our entire deployment workflow."</p>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-6">"An exceptional problem solver. Arafatul doesn't just write code — he architects solutions. His CI/CD implementation was a game-changer for our entire deployment workflow."</p>
                         <div class="flex items-center gap-3">
                             <div class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">DR</div>
                             <div>
-                                <div class="text-sm font-semibold text-white">David Ross</div>
-                                <div class="text-xs text-zinc-500">Lead Engineer, StartupX</div>
+                                <div class="text-sm font-semibold text-gray-900">David Ross</div>
+                                <div class="text-xs text-gray-400">Lead Engineer, StartupX</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-950/40 hover:border-zinc-700 transition-colors md:col-span-2 lg:col-span-1 reveal reveal-delay-3">
+                    <div class="p-6 rounded-2xl border border-gray-200 bg-white hover:border-gray-300 transition-colors md:col-span-2 lg:col-span-1 reveal reveal-delay-3">
                         <iconify-icon icon="solar:quote-right-bold" class="text-2xl text-purple-500/30 mb-4 block"></iconify-icon>
-                        <p class="text-sm text-zinc-300 leading-relaxed mb-6">"Rarely do you find a developer equally strong in frontend logic and database optimization. A true full-stack asset to any engineering team."</p>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-6">"Rarely do you find a developer equally strong in frontend logic and database optimization. A true full-stack asset to any engineering team."</p>
                         <div class="flex items-center gap-3">
                             <div class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">AK</div>
                             <div>
-                                <div class="text-sm font-semibold text-white">Alex Kim</div>
-                                <div class="text-xs text-zinc-500">Product Manager</div>
+                                <div class="text-sm font-semibold text-gray-900">Alex Kim</div>
+                                <div class="text-xs text-gray-400">Product Manager</div>
                             </div>
                         </div>
                     </div>
@@ -967,85 +1009,210 @@
         </section>
 
         <!-- ─── Contact ─── -->
-        <section id="contact" class="py-24 lg:py-32 border-t border-zinc-800/50 relative overflow-hidden">
-            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-xl h-72 bg-green-600/8 rounded-t-full blur-[80px] -z-10 pointer-events-none"></div>
-            <div class="absolute top-0 right-0 w-72 h-72 bg-blue-600/5 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
+        <section id="contact" class="py-24 lg:py-32 border-t border-gray-200 bg-gradient-to-b from-white via-gray-50/50 to-white relative overflow-hidden">
+            <!-- Background glow accents -->
+            <div class="absolute -top-24 left-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-[130px] -z-10 pointer-events-none"></div>
+            <div class="absolute -bottom-24 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-[130px] -z-10 pointer-events-none"></div>
 
-            <div class="max-w-xl mx-auto px-6">
-                <div class="text-center mb-10 reveal">
-                    <div class="section-label justify-center">Contact</div>
-                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">Let's Work Together</h2>
-                    <p class="text-zinc-400 mb-6">Available for remote, freelance, or part-time projects.<br>Type your message below and I'll receive it on WhatsApp instantly.</p>
-                    <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-zinc-400">
-                        <span class="flex items-center gap-2">
-                            <iconify-icon icon="solar:map-point-linear" class="text-emerald-400"></iconify-icon>
-                            Dhaka, Bangladesh · UTC+6
-                        </span>
-                        <span class="text-zinc-700">·</span>
-                        <a href="https://wa.me/8801738020985" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-white transition-colors">
-                            <iconify-icon icon="solar:phone-linear" class="text-green-400"></iconify-icon>
-                            +880 1738020985
-                        </a>
-                        <span class="text-zinc-700">·</span>
-                        <a href="mailto:arafatul985@gmail.com" class="flex items-center gap-2 hover:text-white transition-colors">
-                            <iconify-icon icon="solar:letter-linear" class="text-blue-400"></iconify-icon>
-                            arafatul985@gmail.com
-                        </a>
-                    </div>
+            <div class="max-w-6xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="max-w-2xl mx-auto text-center mb-16 reveal">
+                    <div class="section-label justify-center">Get in Touch</div>
+                    <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-4">
+                        Let's build something <span class="gradient-text">exceptional</span> together.
+                    </h2>
+                    <p class="text-base text-gray-500 leading-relaxed">
+                        Have an upcoming project, need to scale your Laravel backend, or automate cloud deployments? Let's discuss your requirements.
+                    </p>
                 </div>
 
-                <form id="contact-form" class="space-y-5 text-left reveal">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div class="space-y-2">
-                            <label for="name" class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Your Name</label>
-                            <input type="text" id="name" name="name"
-                                class="w-full bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
-                                placeholder="John Doe">
+                <!-- 2-Column Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+                    <!-- Left Column: Contact Cards & Info (5 cols) -->
+                    <div class="lg:col-span-5 space-y-4 reveal">
+                        <!-- WhatsApp Card -->
+                        <a href="https://wa.me/8801738020985" target="_blank" rel="noopener"
+                           class="group flex items-start gap-4 p-5 rounded-2xl border border-gray-200/90 bg-white hover:border-green-500 hover:shadow-lg hover:shadow-green-500/5 transition-all block">
+                            <div class="w-12 h-12 rounded-xl bg-green-50 border border-green-200/80 flex items-center justify-center flex-shrink-0 text-[#25D366] group-hover:scale-110 transition-transform">
+                                <iconify-icon icon="solar:phone-calling-rounded-bold" class="text-2xl"></iconify-icon>
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Fast Response</span>
+                                    <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-green-700 bg-green-50 px-2 py-0.5 rounded-full border border-green-200">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Active
+                                    </span>
+                                </div>
+                                <div class="text-base font-bold text-gray-900 mt-1">+880 1738020985</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Chat directly on WhatsApp</p>
+                            </div>
+                        </a>
+
+                        <!-- Email Card -->
+                        <a href="mailto:arafatul985@gmail.com"
+                           class="group flex items-start gap-4 p-5 rounded-2xl border border-gray-200/90 bg-white hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/5 transition-all block">
+                            <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200/80 flex items-center justify-center flex-shrink-0 text-blue-600 group-hover:scale-110 transition-transform">
+                                <iconify-icon icon="solar:letter-bold" class="text-2xl"></iconify-icon>
+                            </div>
+                            <div class="flex-grow">
+                                <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Direct Email</span>
+                                <div class="text-base font-bold text-gray-900 mt-1 break-all">arafatul985@gmail.com</div>
+                                <p class="text-xs text-gray-500 mt-0.5">Replies typically within 2-4 hours</p>
+                            </div>
+                        </a>
+
+                        <!-- Location Card -->
+                        <div class="flex items-start gap-4 p-5 rounded-2xl border border-gray-200/90 bg-white">
+                            <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-200/80 flex items-center justify-center flex-shrink-0 text-purple-600">
+                                <iconify-icon icon="solar:map-point-wave-bold" class="text-2xl"></iconify-icon>
+                            </div>
+                            <div>
+                                <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Location &amp; Timezone</span>
+                                <div class="text-base font-bold text-gray-900 mt-1">Dhaka, Bangladesh</div>
+                                <p class="text-xs text-gray-500 mt-0.5">UTC+6 · Working globally with EU, US &amp; Asian clients</p>
+                            </div>
                         </div>
-                        <div class="space-y-2">
-                            <label for="budget" class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Budget (optional)</label>
-                            <input type="text" id="budget" name="budget"
-                                class="w-full bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
-                                placeholder="e.g. $500 / $1000">
+
+                        <!-- Micro guarantees / trust points -->
+                        <div class="p-6 rounded-2xl bg-white border border-gray-200/80 shadow-sm space-y-3">
+                            <div class="text-xs font-bold text-gray-900 uppercase tracking-wider">Why work with me:</div>
+                            <ul class="space-y-2.5 text-xs text-gray-600">
+                                <li class="flex items-center gap-2.5">
+                                    <iconify-icon icon="solar:check-circle-bold" class="text-green-600 text-base flex-shrink-0"></iconify-icon>
+                                    <span>High-performance &amp; scalable Laravel architecture</span>
+                                </li>
+                                <li class="flex items-center gap-2.5">
+                                    <iconify-icon icon="solar:check-circle-bold" class="text-green-600 text-base flex-shrink-0"></iconify-icon>
+                                    <span>Zero-downtime CI/CD &amp; Dockerized environments</span>
+                                </li>
+                                <li class="flex items-center gap-2.5">
+                                    <iconify-icon icon="solar:check-circle-bold" class="text-green-600 text-base flex-shrink-0"></iconify-icon>
+                                    <span>Clear communication with daily progress tracking</span>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="space-y-2">
-                        <label for="message" class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Project Details</label>
-                        <textarea id="message" name="message" rows="4" required
-                            class="w-full bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all resize-none"
-                            placeholder="Describe your project, what you need built, timeline, etc..."></textarea>
                     </div>
 
-                    <!-- WhatsApp button -->
-                    <button type="submit"
-                        class="w-full px-6 py-3.5 text-sm font-semibold text-white bg-[#25D366] hover:bg-[#1ebe5d] active:scale-[0.98] transition-all rounded-xl flex items-center justify-center gap-2.5 shadow-lg shadow-green-900/30">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                        Send via WhatsApp
-                    </button>
-                </form>
+                    <!-- Right Column: Interactive Form Card (7 cols) -->
+                    <div class="lg:col-span-7 reveal reveal-delay-1">
+                        <div class="bg-white rounded-3xl border border-gray-200/90 shadow-xl shadow-gray-200/60 overflow-hidden relative">
+                            <!-- Card decorative top stripe -->
+                            <div class="h-2 bg-gradient-to-r from-green-500 via-emerald-400 to-lime-400"></div>
+
+                            <div class="p-7 sm:p-10">
+                                <div class="mb-7">
+                                    <h3 class="text-2xl font-bold text-gray-900">Send a Project Inquiry</h3>
+                                    <p class="text-sm text-gray-500 mt-1">Fill out the form below and it will prepare a structured message for you.</p>
+                                </div>
+
+                                <form id="contact-form" class="space-y-5">
+                                    <!-- Inputs Row -->
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <!-- Name -->
+                                        <div class="space-y-1.5">
+                                            <label for="name" class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                                Your Name <span class="text-red-500">*</span>
+                                            </label>
+                                            <div class="relative">
+                                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                                                    <iconify-icon icon="solar:user-bold" class="text-base"></iconify-icon>
+                                                </span>
+                                                <input type="text" id="name" name="name" required
+                                                    class="w-full bg-gray-50/70 border border-gray-200 rounded-xl pl-10 pr-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-600/20 transition-all"
+                                                    placeholder="John Doe">
+                                            </div>
+                                        </div>
+
+                                        <!-- Budget -->
+                                        <div class="space-y-1.5">
+                                            <label for="budget" class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                                Budget (USD)
+                                            </label>
+                                            <div class="relative">
+                                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                                                    <iconify-icon icon="solar:dollar-bold" class="text-base"></iconify-icon>
+                                                </span>
+                                                <input type="text" id="budget" name="budget"
+                                                    class="w-full bg-gray-50/70 border border-gray-200 rounded-xl pl-10 pr-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-600/20 transition-all"
+                                                    placeholder="e.g. $500 - $2,000">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Service pills selection -->
+                                    <div class="space-y-2">
+                                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                            Project Category:
+                                        </label>
+                                        <div class="flex flex-wrap gap-2" id="service-pills">
+                                            <button type="button" class="service-pill px-3 py-1.5 rounded-lg text-xs font-medium border border-gray-200 bg-gray-50 text-gray-600 hover:border-green-500 hover:text-green-700 transition-all" data-val="Laravel API">Laravel API</button>
+                                            <button type="button" class="service-pill px-3 py-1.5 rounded-lg text-xs font-medium border border-gray-200 bg-gray-50 text-gray-600 hover:border-green-500 hover:text-green-700 transition-all" data-val="Docker & DevOps">Docker &amp; DevOps</button>
+                                            <button type="button" class="service-pill px-3 py-1.5 rounded-lg text-xs font-medium border border-gray-200 bg-gray-50 text-gray-600 hover:border-green-500 hover:text-green-700 transition-all" data-val="Full-Stack App">Full-Stack App</button>
+                                            <button type="button" class="service-pill px-3 py-1.5 rounded-lg text-xs font-medium border border-gray-200 bg-gray-50 text-gray-600 hover:border-green-500 hover:text-green-700 transition-all" data-val="Speed & Optimization">Performance Audit</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Message -->
+                                    <div class="space-y-1.5">
+                                        <label for="message" class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                            Project Details <span class="text-red-500">*</span>
+                                        </label>
+                                        <textarea id="message" name="message" rows="4" required
+                                            class="w-full bg-gray-50/70 border border-gray-200 rounded-xl p-4 text-sm text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-600/20 transition-all resize-none"
+                                            placeholder="Tell me about what you need built, timeline, specific requirements, etc..."></textarea>
+                                    </div>
+
+                                    <!-- Buttons -->
+                                    <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                                        <!-- WhatsApp Submit -->
+                                        <button type="submit"
+                                            class="w-full sm:flex-1 px-6 py-3.5 text-sm font-semibold text-white bg-green-600 hover:bg-green-700 active:scale-[0.99] transition-all rounded-xl flex items-center justify-center gap-2.5 shadow-md shadow-green-600/20">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                            </svg>
+                                            Send via WhatsApp
+                                        </button>
+
+                                        <!-- Email Fallback -->
+                                        <button type="button" id="email-btn"
+                                            class="w-full sm:w-auto px-5 py-3.5 text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 active:scale-[0.99] transition-all rounded-xl flex items-center justify-center gap-2">
+                                            <iconify-icon icon="solar:letter-linear" class="text-base text-gray-500"></iconify-icon>
+                                            Send via Email
+                                        </button>
+                                    </div>
+
+                                    <p class="text-[11px] text-gray-400 text-center sm:text-left flex items-center justify-center sm:justify-start gap-1.5 pt-1">
+                                        <iconify-icon icon="solar:shield-check-bold" class="text-green-600 text-sm"></iconify-icon>
+                                        No spam. Your email and project details are kept strictly private.
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
 
     </main>
 
     <!-- ─── Footer ─── -->
-    <footer class="border-t border-zinc-800/50 bg-[#0a0a0a] py-8">
+    <footer class="border-t border-gray-200 bg-gray-50 py-8">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="text-lg font-bold tracking-tighter text-white">Arafatul.</div>
-            <p class="text-xs text-zinc-600">&copy; 2026 Shah Md. Arafatul Rahman · Dhaka, Bangladesh</p>
-            <div class="flex items-center gap-5 text-zinc-500">
-                <a href="https://github.com/" target="_blank" rel="noopener" class="hover:text-white transition-colors hover:scale-110 transform inline-block" aria-label="GitHub">
+            <div class="text-lg font-bold tracking-tighter text-gray-900">Arafatul.</div>
+            <p class="text-xs text-gray-400">&copy; 2026 Shah Md. Arafatul Rahman · Dhaka, Bangladesh</p>
+            <div class="flex items-center gap-5 text-gray-400">
+                <a href="https://github.com/" target="_blank" rel="noopener" class="hover:text-gray-900 transition-colors hover:scale-110 transform inline-block" aria-label="GitHub">
                     <iconify-icon icon="solar:github-linear" class="text-xl"></iconify-icon>
                 </a>
-                <a href="https://www.linkedin.com/in/shah-md-arafatul-rahman-490747161/" target="_blank" rel="noopener" class="hover:text-white transition-colors hover:scale-110 transform inline-block" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/shah-md-arafatul-rahman-490747161/" target="_blank" rel="noopener" class="hover:text-gray-900 transition-colors hover:scale-110 transform inline-block" aria-label="LinkedIn">
                     <iconify-icon icon="solar:link-circle-linear" class="text-xl"></iconify-icon>
                 </a>
                 <a href="https://wa.me/8801738020985" target="_blank" rel="noopener" class="hover:text-green-400 transition-colors hover:scale-110 transform inline-block" aria-label="WhatsApp">
                     <iconify-icon icon="solar:phone-linear" class="text-xl"></iconify-icon>
                 </a>
-                <a href="mailto:arafatul985@gmail.com" class="hover:text-white transition-colors hover:scale-110 transform inline-block" aria-label="Email">
+                <a href="mailto:arafatul985@gmail.com" class="hover:text-gray-900 transition-colors hover:scale-110 transform inline-block" aria-label="Email">
                     <iconify-icon icon="solar:letter-linear" class="text-xl"></iconify-icon>
                 </a>
             </div>
@@ -1084,15 +1251,37 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    // ── Service pill selection ────────────────────────
+    let selectedService = '';
+    document.querySelectorAll('.service-pill').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const val = this.dataset.val;
+            if (selectedService === val) {
+                selectedService = '';
+                this.classList.remove('bg-green-600', 'text-white', 'border-green-600');
+                this.classList.add('bg-gray-50', 'text-gray-600', 'border-gray-200');
+            } else {
+                document.querySelectorAll('.service-pill').forEach(b => {
+                    b.classList.remove('bg-green-600', 'text-white', 'border-green-600');
+                    b.classList.add('bg-gray-50', 'text-gray-600', 'border-gray-200');
+                });
+                selectedService = val;
+                this.classList.remove('bg-gray-50', 'text-gray-600', 'border-gray-200');
+                this.classList.add('bg-green-600', 'text-white', 'border-green-600');
+            }
+        });
+    });
+
     // ── Contact form → WhatsApp ────────────────────────
     function buildMessage() {
         const name    = document.getElementById('name').value.trim();
         const budget  = document.getElementById('budget').value.trim();
         const message = document.getElementById('message').value.trim();
         let text = 'Hi Arafatul! 👋\n\n';
-        if (name)    text += 'My name is ' + name + '.\n';
-        if (budget)  text += 'Budget: ' + budget + '\n';
-        if (message) text += '\n' + message;
+        if (name)            text += 'My name is ' + name + '.\n';
+        if (selectedService) text += 'Interested in: ' + selectedService + '\n';
+        if (budget)          text += 'Budget: ' + budget + '\n';
+        if (message)         text += '\nProject Details:\n' + message;
         return text;
     }
 
@@ -1131,11 +1320,12 @@
         const name    = document.getElementById('name').value.trim();
         const message = document.getElementById('message').value.trim();
         const budget  = document.getElementById('budget').value.trim();
-        const subject = encodeURIComponent('Project Inquiry' + (name ? ' from ' + name : ''));
+        const subject = encodeURIComponent('Project Inquiry' + (selectedService ? ' (' + selectedService + ')' : '') + (name ? ' from ' + name : ''));
         const body    = encodeURIComponent(
-            (name    ? 'Name: '    + name    + '\n' : '') +
-            (budget  ? 'Budget: '  + budget  + '\n' : '') +
-            (message ? '\n'        + message        : '')
+            (name            ? 'Name: ' + name + '\n' : '') +
+            (selectedService ? 'Service: ' + selectedService + '\n' : '') +
+            (budget          ? 'Budget: ' + budget + '\n' : '') +
+            (message         ? '\nProject Details:\n' + message : '')
         );
         window.location.href = 'mailto:arafatul985@gmail.com?subject=' + subject + '&body=' + body;
     });

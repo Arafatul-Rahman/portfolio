@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shah Md. Arafatul Rahman - Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #1e293b;
+            background: #ffffff;
+            font-size: 9.5pt;
+            line-height: 1.45;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 16mm 18mm;
+            margin: 0 auto;
+            background: #ffffff;
+        }
+        /* Header */
+        .header {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 14px;
+            margin-bottom: 14px;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .name {
+            font-size: 24pt;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+        .name span {
+            color: #16a34a;
+        }
+        .title {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #15803d;
+            margin-top: 3px;
+            letter-spacing: -0.01em;
+        }
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 14px;
+            margin-top: 10px;
+            font-size: 8.5pt;
+            color: #475569;
+        }
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .contact-item a {
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contact-item svg {
+            width: 12px;
+            height: 12px;
+            fill: #16a34a;
+        }
+        .dot-sep {
+            color: #cbd5e1;
+        }
+
+        /* Layout Columns */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        /* Section Headings */
+        .section-title {
+            font-size: 9.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #0f172a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1.5px solid #e2e8f0;
+            padding-bottom: 3px;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 11px;
+            background: #16a34a;
+            border-radius: 2px;
+        }
+
+        /* Experience Item */
+        .exp-item {
+            margin-bottom: 12px;
+        }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+        .exp-role {
+            font-size: 10pt;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .exp-company {
+            font-size: 9pt;
+            font-weight: 600;
+            color: #16a34a;
+        }
+        .exp-date {
+            font-size: 8pt;
+            font-weight: 600;
+            color: #64748b;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .exp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin: 3px 0 5px 0;
+        }
+        .tag {
+            font-size: 7pt;
+            font-weight: 600;
+            background: #f1f5f9;
+            color: #334155;
+            padding: 1px 6px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+        .tag.accent {
+            background: #f0fdf4;
+            color: #15803d;
+            border-color: #bbf7d0;
+        }
+        .exp-bullets {
+            list-style: none;
+            padding-left: 0;
+        }
+        .exp-bullets li {
+            position: relative;
+            padding-left: 12px;
+            margin-bottom: 3px;
+            font-size: 8.5pt;
+            color: #334155;
+            line-height: 1.4;
+        }
+        .exp-bullets li::before {
+            content: '•';
+            position: absolute;
+            left: 2px;
+            top: -1px;
+            color: #16a34a;
+            font-weight: bold;
+            font-size: 10pt;
+        }
+
+        /* Sidebar Blocks */
+        .side-block {
+            margin-bottom: 14px;
+        }
+        .skill-group {
+            margin-bottom: 9px;
+        }
+        .skill-group-title {
+            font-size: 8pt;
+            font-weight: 700;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 3px;
+        }
+        .skill-list {
+            font-size: 8.5pt;
+            color: #1e293b;
+            line-height: 1.4;
+        }
+        .skill-list strong {
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .cert-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 6px 8px;
+            margin-bottom: 6px;
+        }
+        .cert-title {
+            font-size: 8.5pt;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .cert-org {
+            font-size: 7.5pt;
+            color: #64748b;
+        }
+
+        .summary-text {
+            font-size: 8.7pt;
+            color: #334155;
+            line-height: 1.45;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        .stat-badge {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #15803d;
+            font-weight: 700;
+            font-size: 7.5pt;
+            padding: 1px 5px;
+            border-radius: 3px;
+            border: 1px solid #86efac;
+            margin-right: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div>
+                <h1 class="name">Shah Md. Arafatul <span>Rahman</span></h1>
+                <div class="title">Senior Laravel &amp; Backend Engineer · ~5 Years Experience</div>
+            </div>
+            <div style="text-align: right;">
+                <span style="display: inline-block; font-size: 8pt; font-weight: 700; color: #15803d; background: #f0fdf4; border: 1px solid #86efac; border-radius: 12px; padding: 3px 9px;">
+                    ● Available for Hire (Remote)
+                </span>
+            </div>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+                Dhaka, Bangladesh (UTC+6)
+            </div>
+            <span class="dot-sep">•</span>
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <a href="mailto:arafatul985@gmail.com">arafatul985@gmail.com</a>
+            </div>
+            <span class="dot-sep">•</span>
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <a href="tel:+8801738020985">+880 1738020985</a>
+            </div>
+            <span class="dot-sep">•</span>
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                <a href="https://gitlab.com/Arafatul_Rahman">gitlab.com/Arafatul_Rahman</a>
+            </div>
+            <span class="dot-sep">•</span>
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                <a href="https://www.linkedin.com/in/shah-md-arafatul-rahman-490747161/">linkedin.com/in/shah-md-arafatul-rahman</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Professional Summary -->
+    <div class="summary-text">
+        Backend-focused Software Engineer with <strong>~5 years of experience</strong> architecting resilient, production-grade applications using <strong>Laravel, PHP 8, MySQL/PostgreSQL, and Redis</strong>. Specializing in high-throughput REST APIs, distributed shift scheduling systems, asynchronous queue workers, Dockerized cloud environments, and intelligent AI automation (OpenAI, LangChain, n8n). Proven track record supporting European enterprise clients and high-traffic national platforms.
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="content-grid">
+
+        <!-- Left Column: Experience & Projects -->
+        <div>
+
+            <!-- Work Experience -->
+            <div class="side-block">
+                <div class="section-title">Work Experience</div>
+
+                <!-- Job 1 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <div>
+                            <span class="exp-role">Laravel Developer</span>
+                            <span style="color:#94a3b8;">·</span>
+                            <span class="exp-company">Dingi Dev</span>
+                        </div>
+                        <span class="exp-date">2022 — Present</span>
+                    </div>
+                    <div class="exp-tags">
+                        <span class="tag accent">Laravel 10/11</span>
+                        <span class="tag">Vue.js / Livewire</span>
+                        <span class="tag">Redis Queues</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Linux VPS</span>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Architected and delivered full <strong>shift-wise workforce scheduling system</strong> for European clients with multi-country timezone support.</li>
+                        <li>Built high-accuracy engines for <strong>vacation entitlement, leave accrual, overtime calculation</strong>, and complex European labor law compensation rules.</li>
+                        <li>Implemented robust asynchronous queue pipeline handling notifications, automatic shift reminders, and cron-scheduled syncs.</li>
+                        <li>Managed production deployments with Docker Compose, Nginx SSL reverse-proxy, and continuous delivery via Git.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <div>
+                            <span class="exp-role">Full Stack Developer</span>
+                            <span style="color:#94a3b8;">·</span>
+                            <span class="exp-company">Innovation Information System</span>
+                        </div>
+                        <span class="exp-date">2019 — 2022</span>
+                    </div>
+                    <div class="exp-tags">
+                        <span class="tag accent">Laravel</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">REST APIs</span>
+                        <span class="tag">POS System</span>
+                        <span class="tag">Inventory</span>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Developed complete <strong>POS &amp; Inventory Management System</strong> from scratch for Australian retail client (Banglatussie) using Laravel.</li>
+                        <li>Engineered real-time stock deduction, multi-store product catalog, barcode scanning, and PDF invoice generation.</li>
+                        <li>Designed performant database schemas, indexes, and optimized complex financial sales reporting queries.</li>
+                        <li>Collaborated in agile team building online learning platforms with student tracking and test evaluation modules.</li>
+                    </ul>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <div>
+                            <span class="exp-role">Software Developer (Part-time)</span>
+                            <span style="color:#94a3b8;">·</span>
+                            <span class="exp-company">BdTender</span>
+                        </div>
+                        <span class="exp-date">2021 — 2025</span>
+                    </div>
+                    <div class="exp-tags">
+                        <span class="tag accent">Laravel</span>
+                        <span class="tag">Ajax</span>
+                        <span class="tag">MySQL Indexing</span>
+                        <span class="tag">SMS Alerts</span>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Engineered backend features for Bangladesh's leading tender aggregation platform (<a href="https://bdtender.com" style="color:#16a34a; text-decoration:none; font-weight:600;">bdtender.com</a>), indexing government and e-GP notices daily.</li>
+                        <li>Built fast Ajax-powered multifaceted filtering system allowing businesses to search tenders across 64 districts in milliseconds.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Featured Case Studies -->
+            <div>
+                <div class="section-title">Key Projects &amp; Architecture</div>
+
+                <div style="margin-bottom: 8px;">
+                    <div style="font-size: 9pt; font-weight: 700; color: #0f172a;">
+                        1. Europe Workforce &amp; Shift Management System
+                    </div>
+                    <p style="font-size: 8pt; color: #475569; margin-top: 1px;">
+                        Enterprise SaaS platform handling timezone-aware employee shifts, leave approvals, and automated notifications for European labor standards.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 8px;">
+                    <div style="font-size: 9pt; font-weight: 700; color: #0f172a;">
+                        2. BdTender — National Tender Search &amp; Alerts Portal
+                    </div>
+                    <p style="font-size: 8pt; color: #475569; margin-top: 1px;">
+                        High-traffic procurement discovery portal with SMS/email notification subscriptions, database query caching, and automated cron crawlers.
+                    </p>
+                </div>
+
+                <div>
+                    <div style="font-size: 9pt; font-weight: 700; color: #0f172a;">
+                        3. AI Agent &amp; Workflow Automation Engine
+                    </div>
+                    <p style="font-size: 8pt; color: #475569; margin-top: 1px;">
+                        Integrated n8n workflows and LangChain/OpenAI agents into Laravel backends for document parsing, PDF analysis, and automated customer triage.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Skills, Education, Certs -->
+        <div>
+
+            <!-- Skills -->
+            <div class="side-block">
+                <div class="section-title">Technical Skills</div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Backend Architecture</div>
+                    <div class="skill-list">
+                        <strong>Laravel 10/11</strong>, PHP 8.x, REST APIs, Sanctum, Passport, Queues, Horizon, Events, Observers, Microservices.
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Databases &amp; Caching</div>
+                    <div class="skill-list">
+                        <strong>MySQL</strong>, PostgreSQL, <strong>Redis Caching</strong>, Query Optimization, Database Indexing, Migrations.
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">DevOps &amp; Cloud</div>
+                    <div class="skill-list">
+                        <strong>Docker &amp; Compose</strong>, GitHub Actions, GitLab CI, AWS (EC2, S3, RDS), <strong>Nginx</strong>, Linux VPS Admin.
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">AI &amp; Automation</div>
+                    <div class="skill-list">
+                        <strong>AI Agents</strong>, LangChain, OpenAI API, <strong>n8n Workflows</strong>, RAG Chatbots, Vector Embeddings.
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-group-title">Frontend &amp; Tools</div>
+                    <div class="skill-list">
+                        Vue.js, Livewire, JavaScript / Ajax, Tailwind CSS, Postman, Git / GitLab.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="side-block">
+                <div class="section-title">Certifications</div>
+
+                <div class="cert-card">
+                    <div class="cert-title">AWS Cloud Practitioner</div>
+                    <div class="cert-org">Amazon Web Services · 2024</div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-title">PHP &amp; Laravel — Advanced</div>
+                    <div class="cert-org">Udemy · 2022</div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-title">AI Agents &amp; LangChain</div>
+                    <div class="cert-org">DeepLearning.AI · 2025</div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="side-block">
+                <div class="section-title">Education</div>
+                <div style="font-size: 9pt; font-weight: 700; color: #0f172a;">B.Sc. in Computer Science &amp; Engineering</div>
+                <div style="font-size: 8pt; color: #16a34a; font-weight: 600;">Dhaka, Bangladesh</div>
+                <div style="font-size: 7.5pt; color: #64748b; margin-top: 2px;">Core: Algorithms, Data Structures, OOP, Software Architecture, Database Systems.</div>
+            </div>
+
+            <!-- Languages & Soft Skills -->
+            <div class="side-block">
+                <div class="section-title">Languages &amp; Work Style</div>
+                <div style="font-size: 8pt; color: #334155; line-height: 1.5;">
+                    <div>• <strong>English</strong>: Fluent (Professional working)</div>
+                    <div>• <strong>Bengali</strong>: Native</div>
+                    <div style="margin-top: 4px;">• Async-first communication</div>
+                    <div>• Clean code &amp; documentation</div>
+                    <div>• Timezone-flexible for US/EU</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

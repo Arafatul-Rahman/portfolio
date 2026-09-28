@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel REST API Best Practices: Structure, Auth & Versioning | Arafatul</title>
+    <meta name="description" content="A guide to architecting production-grade Laravel REST APIs with Sanctum, Form Requests, API Resources, and API versioning.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #d4d4d8; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .prose h2 { color: #fff; font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose p  { color: #a1a1aa; line-height: 1.75; margin-bottom: 1rem; }
+        .prose ul { color: #a1a1aa; padding-left: 1.25rem; margin-bottom: 1rem; list-style: disc; }
+        .prose ul li { margin-bottom: 0.4rem; line-height: 1.7; }
+        .prose strong { color: #e4e4e7; font-weight: 600; }
+        .code-block {
+            background: #111;
+            border: 1px solid #27272a;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.8;
+            overflow-x: auto;
+            margin-bottom: 1.25rem;
+            color: #a1a1aa;
+        }
+        .code-block .kw  { color: #c084fc; }
+        .code-block .fn  { color: #60a5fa; }
+        .code-block .str { color: #4ade80; }
+        .code-block .cm  { color: #71717a; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Nav -->
+    <header class="border-b border-zinc-800/50 bg-[#0a0a0a]/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm">
+                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> All Posts
+            </a>
+            <a href="../index.html" class="text-sm font-semibold text-white hover:text-green-400 transition-colors">Arafatul.</a>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-3xl mx-auto px-6 py-16">
+
+        <!-- Header -->
+        <div class="mb-10">
+            <div class="flex flex-wrap gap-2 mb-5">
+                <span class="px-2 py-0.5 text-xs font-medium bg-purple-500/10 text-purple-300 rounded border border-purple-500/20">Laravel</span>
+                <span class="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded">REST API</span>
+                <span class="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded">Architecture</span>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
+                Laravel REST API Best Practices: Structure, Auth &amp; Versioning
+            </h1>
+            <p class="text-zinc-500 text-sm">
+                Published by <span class="text-zinc-300">Shah Md. Arafatul Rahman</span> · 8 min read
+            </p>
+        </div>
+
+        <div class="prose text-sm leading-relaxed border-t border-zinc-800 pt-8 space-y-6">
+
+            <p>
+                When building modern web and mobile applications, the backend API is the bedrock of everything. A poorly architected API becomes a nightmare to maintain as business logic grows. In this guide, I share the architectural patterns I use to ship production-ready Laravel APIs.
+            </p>
+
+            <h2>1. Route Organization &amp; API Versioning</h2>
+            <p>
+                Never deploy an API without version prefixes. Keeping versioned namespaces (`routes/api/v1.php`) prevents breaking mobile apps or third-party integrations when making changes.
+            </p>
+
+            <div class="code-block">
+<span class="cm">// routes/api.php</span><br>
+Route::<span class="fn">prefix</span>(<span class="str">'v1'</span>)-><span class="fn">middleware</span>([<span class="str">'api'</span>])-><span class="fn">group</span>(<span class="kw">function</span> () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Route::<span class="fn">post</span>(<span class="str">'/auth/login'</span>, [AuthController::<span class="kw">class</span>, <span class="str">'login'</span>]);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Route::<span class="fn">middleware</span>(<span class="str">'auth:sanctum'</span>)-><span class="fn">group</span>(<span class="kw">function</span> () {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Route::<span class="fn">apiResource</span>(<span class="str">'shifts'</span>, ShiftController::<span class="kw">class</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+});
+            </div>
+
+            <h2>2. Keep Controllers Thin with Form Requests</h2>
+            <p>
+                Validation logic should never pollute your controller methods. Use dedicated Form Request classes to validate input and authorize requests cleanly before execution.
+            </p>
+
+            <h2>3. Always Use API Resource Transformers</h2>
+            <p>
+                Never return raw Eloquent models directly from your controllers. Eloquent models can accidentally leak sensitive columns (like password hashes or internal IDs). Using `JsonResource` guarantees a clean, consistent schema.
+            </p>
+
+            <div class="code-block">
+<span class="cm">// app/Http/Resources/ShiftResource.php</span><br>
+<span class="kw">public function</span> <span class="fn">toArray</span>(Request $request): <span class="kw">array</span><br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'id'</span>          => $this->id,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'title'</span>       => $this->title,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'starts_at'</span>   => $this->starts_at-><span class="fn">toIso8601String</span>(),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">'status'</span>      => $this->status,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;];<br>
+}
+            </div>
+
+            <h2>4. Standardized JSON Response Trait</h2>
+            <p>
+                Your API consumers (Vue, React, mobile apps) expect predictable responses. Wrapping responses in a standard envelope (`status`, `message`, `data`, `errors`) makes client integration effortless.
+            </p>
+
+            <div class="mt-12 p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 flex items-center justify-between">
+                <div>
+                    <h3 class="text-white font-semibold text-base mb-1">Have an API project?</h3>
+                    <p class="text-zinc-400 text-xs">Let's talk about building high-performance Laravel backends together.</p>
+                </div>
+                <a href="../index.html#contact" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium text-xs rounded-lg transition-colors flex-shrink-0">
+                    Get in Touch
+                </a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="border-t border-zinc-800/50 py-8 text-center text-xs text-zinc-600">
+        &copy; 2026 Shah Md. Arafatul Rahman · <a href="../index.html" class="hover:text-zinc-400 transition-colors">Portfolio</a>
+    </footer>
+
+</body>
+</html>

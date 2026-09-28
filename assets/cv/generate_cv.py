@@ -250,8 +250,8 @@ def build_pdf(filename):
     left_flow.append(HRFlowable(width="100%", thickness=0.8, color=BORDER_COLOR, spaceBefore=1*mm, spaceAfter=2*mm))
 
     p1 = "<b>1. BdTender Procurement Portal:</b> National tender aggregation platform serving thousands of daily commercial users with sub-second Ajax search indexing and real-time SMS/email alerts."
-    p2 = "<b>2. Enterprise Shift Management Engine:</b> Complex multi-tenant workforce scheduling system with custom timezone handlers, holiday rules, and compensation calculator."
-    p3 = "<b>3. AI-Powered Workflow Automations:</b> Built intelligent lead scoring &amp; RAG document parsing bots integrating <b>LangChain, OpenAI API</b>, and <b>n8n</b> into Laravel backends."
+    p2 = "<b>2. Europe Workforce Shift Management:</b> Enterprise SaaS system with custom timezone handlers, European holiday compliance rules, and automated compensation calculator."
+    p3 = "<b>3. Insideout Platform &amp; AI Automation:</b> Scalable web application (insideoutbd.com) with integrated <b>n8n</b> automations, LangChain agents, and custom Laravel APIs."
     for p in [p1, p2, p3]:
         left_flow.append(Paragraph(p, bullet_style))
         left_flow.append(Spacer(1, 1*mm))

@@ -178,6 +178,66 @@
             transition: width 0.25s ease;
         }
         .nav-desktop-link:hover::after { width: 100%; }
+
+        /* ---- Gentle Floating Animation for Hero Card ---- */
+        @keyframes gentle-float {
+            0%, 100% {
+                transform: translateY(0px) rotate(2deg);
+            }
+            50% {
+                transform: translateY(-8px) rotate(2.3deg);
+            }
+        }
+        .animate-floating-card {
+            animation: gentle-float 6s ease-in-out infinite;
+        }
+        .animate-floating-card:hover {
+            animation-play-state: paused;
+            transform: translateY(0) rotate(0deg) scale(1.008) !important;
+        }
+        @media (max-width: 1023px) {
+            .animate-floating-card {
+                animation: none;
+                transform: none;
+            }
+        }
+
+        /* ---- Shimmer Light Sweep ---- */
+        @keyframes shimmer-sweep {
+            0% { transform: translateX(-150%); }
+            100% { transform: translateX(200%); }
+        }
+        .shimmer-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-badge::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            animation: shimmer-sweep 4s infinite;
+            pointer-events: none;
+        }
+
+        /* ---- Blinking Terminal Cursor ---- */
+        @keyframes terminal-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .terminal-cursor {
+            display: inline-block;
+            width: 7px;
+            height: 14px;
+            background-color: #16a34a;
+            animation: terminal-blink 1s step-start infinite;
+            vertical-align: middle;
+            margin-left: 4px;
+            border-radius: 1px;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-green-200 selection:text-green-900 flex flex-col min-h-screen">
@@ -255,7 +315,7 @@
                 </div>
 
                 <!-- Currently Working On -->
-                <div class="flex items-center gap-2 text-xs text-gray-500 font-mono bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 w-fit">
+                <div class="flex items-center gap-2 text-xs text-gray-500 font-mono bg-white border border-gray-200/90 rounded-lg px-3 py-2 w-fit shadow-xs shimmer-badge">
                     <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse flex-shrink-0"></span>
                     <span class="text-gray-400">currently building →</span>
                     <span class="text-gray-700 font-medium">AI-powered scheduling system for remote teams</span>
@@ -326,7 +386,7 @@
             <!-- Laravel Code Mockup (White Theme) -->
             <div class="flex-1 w-full lg:w-auto relative group">
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-green-500/10 rounded-full blur-[80px] -z-10 group-hover:bg-green-500/15 transition-all duration-700"></div>
-                <div class="rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-2xl shadow-gray-300/60 transform lg:rotate-[2deg] lg:translate-y-2 lg:hover:rotate-0 lg:hover:translate-y-0 transition-all duration-500">
+                <div class="rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-2xl shadow-gray-300/60 transform lg:rotate-[2deg] lg:translate-y-2 lg:hover:rotate-0 lg:hover:translate-y-0 transition-all duration-500 animate-floating-card">
                     <!-- Window bar -->
                     <div class="flex items-center gap-3 px-4 py-3 border-b border-gray-100 bg-gray-50/80">
                         <div class="flex gap-1.5">
@@ -429,7 +489,7 @@
                         <!-- Line 21 -->
                         <div class="flex gap-4">
                             <span class="select-none text-gray-300 w-4 text-right flex-shrink-0">21</span>
-                            <div><span class="text-gray-500">}</span></div>
+                            <div><span class="text-gray-500">}</span><span class="terminal-cursor"></span></div>
                         </div>
                         <!-- Status bar -->
                         <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-400">
